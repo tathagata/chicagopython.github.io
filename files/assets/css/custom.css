@@ -72,13 +72,6 @@ body > header {
   width: 100%;
 }
 
-body > header svg {
-  display: block;
-  height: 2rem;
-  margin: 3px auto;
-  padding-right: 15vw;
-}
-
 figcaption {
   text-align: center;
 }
@@ -92,7 +85,7 @@ footer div {
   padding: 0.42rem;
 }
 
-header nav, main, footer {
+main, footer {
   width: 80%;
   max-width: 1024px;
 }
@@ -100,7 +93,8 @@ header nav, main, footer {
 header nav {
   display: flex;
   flex-wrap: wrap;
-  margin: .5em auto auto auto;
+  padding: .5em;
+  background-color: #18354c;
 }
 
 /* Inset, by Dan Eden -- https://css-tricks.com/examples/hrs/ */
@@ -135,8 +129,8 @@ nav li {
 }
 
 nav a {
-  color: #223;
-  vertical-align: bottom;
+  color: #fff;
+  vertical-align: middle;
 }
 
 main {
@@ -163,6 +157,16 @@ th {
 time {
   white-space: nowrap;
   padding-right: 1em;
+}
+
+a[rel="license"] img {
+  height: 1rem;
+}
+
+#logo {
+  height: 1.3rem;
+  vertical-align: bottom;
+  padding-right: .5rem;
 }
 
 .active {
@@ -394,8 +398,8 @@ time {
 }
 
 #blog-title {
-  fill: #223;
-  font-weight: 100;
+  fill: #fff;
+  font-weight: 200;
 }
 
 #blog-title:hover {
@@ -411,9 +415,12 @@ time {
     margin: auto;
   }
 
-  body > header svg {
-    width: 80vw;
-    padding: 0;
+  body > header a[rel="home"] {
+    display: block;
+    min-width: 66vw;
+    font-size: large;
+    margin: 2px;
+    padding: 0.25rem;
   }
 
   .postlist li {
