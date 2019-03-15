@@ -954,7 +954,7 @@ FEED_LINKS_APPEND_QUERY = False
 LICENSE = """
 <a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html">
 <img alt="Gnu Public License version 3.0"
-style="border-width:0; margin-bottom:12px;"
+style="border-width:0;"
 src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png"></a>"""
 
 # A small copyright notice for the page footer (in HTML).
@@ -1241,7 +1241,7 @@ SHOW_SOURCELINK = False
 # Extra things you want in the pages HEAD tag. This will be added right
 # before </head>
 # (translatable)
-#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+#<link rel="stylesheet" href="https://maxcdn.bootstfont-awesome/latest/css/font-awesome.min.css">
 #EXTRA_HEAD_DATA = """
 #<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
 #<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
@@ -1365,12 +1365,6 @@ DISABLED_PLUGINS = ["render_galleries"]
 # example.
 # (defaults to 1.)
 # DEMOTE_HEADERS = 1
-
-# Docutils, by default, will perform a transform in your documents
-# extracting unique titles at the top of your document and turning
-# them into metadata. This surprises a lot of people, and setting
-# this option to True will prevent it.
-# NO_DOCUTILS_TITLE_TRANSFORM = False
 
 # If you don’t like slugified file names ([a-z0-9] and a literal dash),
 # and would prefer to use all the characters your file system allows.

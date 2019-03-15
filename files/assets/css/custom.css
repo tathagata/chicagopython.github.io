@@ -161,6 +161,7 @@ time {
 
 a[rel="license"] img {
   height: 1rem;
+  vertical-align: middle;
 }
 
 #logo {
@@ -169,9 +170,9 @@ a[rel="license"] img {
   padding-right: .5rem;
 }
 
-.active {
-  border-bottom: 3px solid #ccf;
-  margin: 0;
+.active a {
+  color: #ffe873;
+  font-weight: 500;
 }
 
 .anchor-link {
