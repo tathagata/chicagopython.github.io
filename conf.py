@@ -657,6 +657,7 @@ GITHUB_REMOTE_NAME = 'origin'
 
 # Whether or not github_deploy should commit to the source branch automatically
 # before deploying.
+# TODO: Make this False when we switch to Travis CI!!
 GITHUB_COMMIT_SOURCE = True
 
 # Where the output site should be located
