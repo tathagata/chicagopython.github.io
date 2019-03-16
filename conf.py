@@ -187,8 +187,8 @@ THEME_COLOR = '#18354c'
 #     )
 
 POSTS = (
-    ("posts/*.ipynb", "posts", "post.tmpl"),
     ("posts/*.md", "posts", "post.tmpl"),
+    ("posts/*.ipynb", "posts", "post.tmpl"),
     ("posts/*.rst", "posts", "post.tmpl"),
     ("posts/*.txt", "posts", "post.tmpl"),
     ("posts/*.html", "posts", "post.tmpl"),
