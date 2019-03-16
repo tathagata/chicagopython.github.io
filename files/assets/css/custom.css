@@ -93,7 +93,7 @@ main, footer {
 header nav {
   display: flex;
   flex-wrap: wrap;
-  padding: .5em;
+  padding: .5em 1em;
   background-color: #18354c;
 }
 
@@ -164,10 +164,18 @@ a[rel="license"] img {
   vertical-align: middle;
 }
 
+body > header a[rel="home"] {
+  display: block;
+  min-width: 66vw;
+  font-size: large;
+  margin: 2px;
+  padding: 0.25rem;
+}
+
 #logo {
   height: 1.3rem;
   vertical-align: bottom;
-  padding-right: .5rem;
+  padding-right: .25rem;
 }
 
 .active a {
@@ -281,8 +289,35 @@ a[rel="license"] img {
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.postindex h1 {
+.postindex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.postindex article {
   margin-bottom: 0;
+  min-width: 25%;
+  max-width: 85%;
+  width: 42%;
+  flex: 1 1 auto;
+}
+
+.postindex article img {
+  max-width: 100%;
+}
+
+.postindex ul {
+  list-style-type: none;
+  display: inline;
+}
+
+.postindex li {
+  display: inline;
+}
+
+.postindex .tag {
+  color: #888;
 }
 
 .postlist, .projectlist {
@@ -414,14 +449,6 @@ a[rel="license"] img {
 @media (max-width: 648px) {
   article {
     margin: auto;
-  }
-
-  body > header a[rel="home"] {
-    display: block;
-    min-width: 66vw;
-    font-size: large;
-    margin: 2px;
-    padding: 0.25rem;
   }
 
   .postlist li {

@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
 <%namespace name="helper" file="index_helper.tmpl"/>
+<%namespace name="post_helper" file="post_helper.tmpl"/>
 <%namespace name="math" file="math_helper.tmpl"/>
 <%namespace name="require" file="require_helper.tmpl"/>
 <%namespace name="comments" file="comments_helper.tmpl"/>
@@ -29,15 +30,20 @@
 <div class="postindex">
 % for post in posts:
     <article class="h-entry post-${post.meta('type')}">
-    <header>
-        <h1 class="p-name entry-title"><a href="${post.permalink()}" class="u-url">${post.title()|h}</a></h1>
-        <span class="metadata">
-            <time datetime="${post.formatted_date('webiso')}">${post.formatted_date(date_format)|h}</time>
-            %if post.meta('category'):
-            <span>Filed under <a class="tag p-category" href="${_link('category', post.meta('category').lower())}" rel="category">${post.meta('category')|h}</a>.</span>
-            %endif
-        </span>
-    </header>
+    % if post.meta('previewimage'):
+      <img src="${post.meta('previewimage')}" alt="article thumbnail">
+    % elif post.meta('category') in data['default_thumbnails']:
+      <img src="${data['default_thumbnails'][post.meta('category')]}" alt="article thumbnail">
+    % else:
+      <img src="${data['default_thumbnails']['']}" alt="article thumbnail">
+    % endif
+    <h3 class="p-name entry-title"><a href="${post.permalink()}" class="u-url">${post.title()|h}</a></h3>
+    <span class="metadata">
+        <time datetime="${post.formatted_date('webiso')}">${post.formatted_date(date_format)|h}</time>
+        <span class="fas fa-tags"></span>
+        ${post_helper.html_tags(post)}
+    </span>
+    <!--
     %if index_teasers:
     <div class="p-summary entry-summary">
     ${post.text(teaser_only=True)}\
@@ -46,7 +52,7 @@
     <div class="e-content entry-content">
     ${post.text(teaser_only=False)}\
     %endif
-    </div>
+    </div>-->
     </article>
 %endfor
 </div>
