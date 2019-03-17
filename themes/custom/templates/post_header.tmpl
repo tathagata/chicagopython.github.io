@@ -30,10 +30,6 @@
 <%def name="html_post_header()">
     <header>
         <div class="metadata">
-          <time datetime="${post.formatted_date('webiso')}" itemprop="datePublished">${post.formatted_date(date_format)|h}</time>
-          % if post.meta('category'):
-          <span>Filed under </span><a href="../../categories/cat_${post.meta('category').lower()|u}">${post.meta('category')|h}</a>.
-          % endif
           % if not post.meta('nocomments') and site_has_comments:
               <p class="commentline">${comments.comment_link(post.permalink(), post._base_path)}
           % endif
@@ -43,6 +39,10 @@
           % endif
         </div>
         ${html_title()}
+        <time datetime="${post.formatted_date('webiso')}" itemprop="datePublished">${post.formatted_date(date_format)|h}</time>
+        % if post.meta('category'):
+        <a href="../../categories/cat_${post.meta('category').lower()|u}">${post.meta('category')|h}</a>
+        % endif
         ${html_translations(post)}
     </header>
 </%def>
