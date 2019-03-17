@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html prefix="            og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Command line App for Grouping Project Night Challengers | ChiPy Coding Workshops</title>
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#18354c">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://chicagopython.github.io/posts/command-line-app-for-grouping-project-night-challengers/">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<link rel="manifest" href="../../site.webmanifest">
+<link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#1f91c2">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="theme-color" content="#cceeff">
+<!-- favicons generated using http://realfavicongenerator.net/ --><!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<meta name="author" content="Chicago Python User Group">
+<link rel="prev" href="../python-koans/" title="Python Koans" type="text/html">
+<link rel="next" href="../flask-app-to-group-project-night-challengers/" title="Flask App for Project Night Challengers" type="text/html">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+         
+    <header id="header" class="hidden-print"><nav id="menu"><a href="https://chicagopython.github.io/" title="ChiPy Coding Workshops" rel="home">
+        <img src="../../assets/img/chipy-chipmunk.png" alt="ChiPy Coding Workshops" id="logo" aria-hidden>
+          ChiPy Coding Workshops
+    </a>
+
+    <ul>
+<li><a href="../../categories/">Categories</a></li>
+                <li><a href="../../about/">About</a></li>
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><div class="metadata">
+          
+
+        </div>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Command line App for Grouping Project Night Challengers</a></h1>
+
+        <time datetime="2019-03-16T23:59:16-05:00" itemprop="datePublished">March 16, 2019</time><a href="../../categories/cat_python-101">python-101</a>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h2>Command line App for Grouping Project Night Challengers</h2>
+<p>The organizers of Project Nights need your help! Grouping people for
+team projects is a manual task. Why do it manually, when
+we can automate it?</p>
+<h3>Is this project for you</h3>
+<p>Before you progress further, let's check if we are ready to solve this. You should</p>
+<ul>
+<li>Have a personal computer with working wifi and power chord</li>
+<li>Have Python 3 installed on your computer. Yep, Python 3 only.</li>
+<li>Have <a href="https://atom.io/">Atom</a> or <a href="https://www.sublimetext.com/3">Sublime Text</a> installed in your computer.</li>
+<li>Have written &amp; ran programs in Python from the command line</li>
+<li>Have some idea about lists, dictionaries and functions</li>
+<li>Have some idea about <code>virtualenv</code> and installing packages with <code>pip</code>
+</li>
+</ul>
+<p>This project is not tested using Jupyter Notebook, PyCharm,
+Spider, or any other ide/text editor/programming environment for that matter.
+Atom or Sublime Text and the command line are the only supported development environment for this project.</p>
+<p>Short url for this page: <strong>https://git.io/vdv43</strong></p>
+<p>Sounds reasonable? Then let's dive in - and build an awesome command line app using python.</p>
+<h3>Can command line applications be cool</h3>
+<p>You bet!
+Checkout this PyCon 2017 video on which this project is based</p>
+<p><a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=hJhZhLg3obk" target="_blank"><img src="http://img.youtube.com/vi/hJhZhLg3obk/0.jpg" alt="Amjith Ramanujam Awesome Command Line Tools PyCon 2017" width="560" height="315" border="10"></a></p>
+<p>The slides are available <a href="https://speakerdeck.com/pycon2017/amjith-ramanujam-awesome-command-line-tools">here</a>.</p>
+<h4>What is a Team Project</h4>
+<p>Glad you asked! A team project is an hour long problem solving session where each team
+consists of four members of different expertise level. The teams are formed from the
+list of attendees of the project night.</p>
+<h4>The Objective</h4>
+<p>Our objective is to build an awesome command line application in Python3 that
+- allows creating list of people who want to participate in a team project
+- once the list is created, the program automatically creates teams of four</p>
+<h4>A Balanced Team</h4>
+<p>To keep the team composition balanced in terms of experience, we want every team
+to have two members with more experience than the other two.
+Measuring experience is very subjective and difficult, but we will keep it simple.
+We will rely on a (not very scientific) metic - lines of code written till date.</p>
+<p>We will create a list by taking names of people from tonight's RSVP list. Along with their name we will also include the number of lines of code that person has written till date in Python or an equivalent language. Imagine this as a tool that one of the organizers uses to checkin attendees as they start coming in on the day of Project Night.</p>
+<p>And yeah, this number of lines can be just a rough estimate. As a
+reference, the linux kernel is over 23 million lines of code!</p>
+<h4>Bootstrap</h4>
+<ul>
+<li>
+<p>If you are familiar with <code>git</code>, run</p>
+<pre class="code literal-block"><span></span>git clone https://github.com/chicagopython/CodingWorkshops.git
+</pre>
+
+
+</li>
+<li>
+<p>If not, go to https://github.com/chicagopython/CodingWorkshops</p>
+</li>
+<li>Click on the Download Zip and unzip the file that gets downloaded</li>
+<li>From your command line, change directory to the path where you have downloaded it.</li>
+<li>
+<p>On linux or OS X</p>
+<pre class="code literal-block"><span></span>&gt; cd path/to/CodingWorkshops/problems/py101/python_team_project/
+</pre>
+
+
+</li>
+<li>
+<p>On Windows</p>
+<pre class="code literal-block"><span></span>&gt; cd path\to\CodingWorkshops\problems\py101\python_team_project
+</pre>
+
+
+</li>
+</ul>
+<p>Here you will find the basic skeleton of the app under <code>app.py</code>. (after September 21, 2017)</p>
+<h4>Set up virtualenv</h4>
+<p>If you are using Linux or OS X, run the following to create a new virtualenv</p>
+<pre class="code literal-block"><span></span>python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
+</pre>
+
+
+<p>On Windows, run the following</p>
+<pre class="code literal-block"><span></span>python3 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+</pre>
+
+
+<p><a href="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj"><img alt="asciicast" src="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj.png"></a></p>
+<p>Next let's get started by looking into the code.</p>
+<h3>Feature 0: Look into app.py</h3>
+<p>app.py is the script contains some code to get you started.
+We will be using two external libraries for this
+program.</p>
+<pre class="code literal-block"><span></span>python_prompt_toolkit
+meetup-api
+</pre>
+
+
+<ul>
+<li>
+<code>prompt_toolkit</code> makes it easy for building awesome command line apps</li>
+<li>
+<code>meetup-api</code> provides us with the data for the meetup</li>
+<li>
+<code>asciinema</code> which is also in the <code>requirements.txt</code> isn't strictly necessary and we'll talk about it last</li>
+</ul>
+<p><code>execute</code> function is where you would be writing your application logic.</p>
+<p>You should not require to make changes to <code>main</code> and <code>get_names</code> functions. In an upcoming project nights we will dig into <code>get_names</code> and make changes to it.</p>
+<p>Next let's run app.py</p>
+<pre class="code literal-block"><span></span>   python3 app.py
+</pre>
+
+
+<p>This should drop you to a prompt.</p>
+<pre class="code literal-block"><span></span>&gt;
+</pre>
+
+
+<p>Type in something to that prompt.</p>
+<pre class="code literal-block"><span></span>&gt; Hola amigo
+&gt; You issued: Hola amigo
+</pre>
+
+
+<p>Try a few more</p>
+<pre class="code literal-block"><span></span>&gt; Gracias
+&gt; You issued:Gracias
+</pre>
+
+
+<p>You can now press the up arrow key and access the history of the commands you have issued. To exit out of the program, you can type Ctrl-D.</p>
+<pre class="code literal-block"><span></span>&gt;
+</pre>
+
+
+<p>GoodBye!</p>
+<h4>Feature 1: Implement the Add command</h4>
+<p>Next let's create a command where the user of the program can register new participants to build up the list of users from whom teams will be formed.</p>
+<p>The command should look like the following</p>
+<pre class="code literal-block"><span></span>add &lt;name&gt; &lt;number of lines&gt;
+</pre>
+
+
+<p>where <name> is the full name of the person as it appears in the
+meetup.com and <lines> is the  number of lines of code
+that person has written in Python or a similar programming language in their life.</lines></name></p>
+<blockquote>
+<p>add Tathagata Dasgupta 1</p>
+</blockquote>
+<h4>Feature 2: Add some error checking (optional)</h4>
+<p>You might be asking what if the user incorrectly types something that is not a number
+for the <code>number of lines</code>. Indeed that would be incorrect. Show an error message
+if <number of lines> is not a number.</number></p>
+<pre class="code literal-block"><span></span>    &gt; add Tathagata Dasgupta o
+    ERROR: number of lines should be, er, a "number"
+</pre>
+
+
+<p>Are there other error conditions that can arise?</p>
+<h3>Feature 2: Implement a List command</h3>
+<p>Next add a new command list.
+Show the number of people added and prints the total count
+and the median of the line count.</p>
+<pre class="code literal-block"><span></span>    &gt; add Tathagata Dasgupta 1
+    &gt; add Jason Wirth 2
+    &gt; add Adam Bain 3
+    &gt; add Brian Ray 4
+    &gt; add Guido van Rossum 5
+    &gt; list
+    &gt; People added so far:
+    Tathagata Dasgupta, 1
+    Jason Wirth, 2
+    Adam Bain, 3
+    Brian Ray, 4
+    Guido Van Rossum, 5
+
+    Number of people: 5
+    Median line count: 3
+</pre>
+
+
+<p>Your output need not be exactly the same, but should show the
+correct data. The Median line count will be used in the next
+features.
+Hint: Python3 has the statistics module, so you can use</p>
+<pre class="code literal-block"><span></span><span class="kn">import</span> <span class="nn">statistics</span>
+<span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+</pre>
+
+
+<h3>Feature 3: Add the teams command (optional)</h3>
+<p>The next command we will implement is <code>teams</code> command. Let's say you
+have added a few people already and know what the median line count
+is for the people you have added so far. On issuing the <code>teams</code> command
+it should output teams of four such that each team contains
+  - 2 person who have written less than the median lines of code
+  - 2 person who has written more than written more than median</p>
+<p>If there are less the four people left to group, then group them
+together.</p>
+<p>With our running example, there would be a team of four, and the
+remaining 1 should be in another group.</p>
+<pre class="code literal-block"><span></span>    &gt; teams
+    Group 1: Tathagata Dasgupta, Jason Wirth, Brian Ray, Guido Van Rossum
+    Group 2: Adam Bain
+</pre>
+
+
+<h3>Feature 4. Enhance Team command (optional)</h3>
+<p>Add a unique team name</p>
+<h3>Feature 5. Enhance Team command (optional)</h3>
+<p>Make up random room names and add a room name for each team.</p>
+<h3>Feature 6. Enhance Teams command (optional)</h3>
+<p>Print the teams sorted with the average number of lines of code for each team.</p>
+<h3>Feature 7. Auto-completion for commands (optional)</h3>
+<p>Adding auto completion is easy with <code>prompt_toolkit</code>. In <code>app.py</code> the following line is used to include the
+<code>add</code> command to auto-completion.</p>
+<pre class="code literal-block"><span></span>    command_completer = WordCompleter(['add'], ignore_case=True)
+</pre>
+
+
+<p>Add the remaining commands.</p>
+<h3>Feature 8. Auto-completion for participant names (optional)</h3>
+<p>Typing in names of the attendees of project night would be time consuming
+and error prone. Let's add auto-completion magic to it!</p>
+<p>The funcion <code>get_names</code> uses meetup-api and returns a list of names for the attendees.
+All you need to do is include a call to <code>get_names</code> in the command_completer.</p>
+<h3>Feature 9. Tell the world (optional, OS X or Linux only)</h3>
+<p>We have also installed asciinema - a tool that allows you
+to create recordings of your terminal sessions. In order to tell
+the world what your team has made, let's make a small recording.</p>
+<pre class="code literal-block"><span></span> ascriinmea rec teamname.json
+</pre>
+
+
+<p>Run your program and show off all the cool features you have built in your app.
+To finish recording hit Ctrl-D.
+Next play the recordings</p>
+<pre class="code literal-block"><span></span> asciinema play teamname.json
+</pre>
+
+
+<p>Once the playback looks good, upload it to the interwebs.</p>
+<pre class="code literal-block"><span></span> asciinema upload teamname.json
+</pre>
+
+
+<p>Finally, tweet the link to @chicagopython with "Python Project Night
+Mentorship". Include the twitter handles of your team members.</p>
+<p>Note: This is tested only in OS X. Let me know your experience for running it on
+other operating systems.
+If you see an error</p>
+<pre class="code literal-block"><span></span>    asciinema needs a UTF-8 native locale to run. Check the output of `locale` command.
+</pre>
+
+
+<p>the run the following command before running asciinema.</p>
+<pre class="code literal-block"><span></span>    export LC_ALL=en_US.UTF-8
+</pre>
+
+
+<p>Thanks! Thats all folks!
+If you found a bug or think you some instructions are missing - just open a issue in this repository.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><div>
+    <span class="hidden-print">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span>
+    <span class="hidden-print">
+      <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-url="https://chicagopython.github.io/posts/command-line-app-for-grouping-project-night-challengers/"></script></span>
+    </div>
+    <nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/cat_python-101/" rel="category"> python-101</a></li>
+            <li><a class="tag p-category" href="../../categories/cli/" rel="tag">cli</a></li>
+            <li><a class="tag p-category" href="../../categories/python-101/" rel="tag">python-101</a></li>
+      </ul>
+<ul class="pager hidden-print">
+<li>
+            <a href="../python-koans/" rel="prev" class="previous" title="Python Koans"><span aria-hidden="true">‹ </span>Older</a>
+        </li>
+        <li>
+            <a href="../flask-app-to-group-project-night-challengers/" rel="next" class="next" title="Flask App for Project Night Challengers">Newer<span aria-hidden="true"> ›</span></a>
+        </li>
+    </ul></nav></aside></article></main><footer id="footer"><p class="light-sans">© Chicago Python User Group · Subscribe via <a href="../../rss.xml">RSS</a> · Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> · 
+<a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html">
+<img alt="Gnu Public License version 3.0" style="border-width:0;" src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png"></a></p>
+            
+        </footer>
+</body>
+</html>

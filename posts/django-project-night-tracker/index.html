@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html prefix="            og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Django Project Night Tracker | ChiPy Coding Workshops</title>
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#18354c">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://chicagopython.github.io/posts/django-project-night-tracker/">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<link rel="manifest" href="../../site.webmanifest">
+<link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#1f91c2">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="theme-color" content="#cceeff">
+<!-- favicons generated using http://realfavicongenerator.net/ --><!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<meta name="author" content="Chicago Python User Group">
+<link rel="prev" href="../unit-testing-and-continuous-integration-with-pytest-travis/" title="Unit Testing and Continuous Integration with Pytest &amp; Travis" type="text/html">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+         
+    <header id="header" class="hidden-print"><nav id="menu"><a href="https://chicagopython.github.io/" title="ChiPy Coding Workshops" rel="home">
+        <img src="../../assets/img/chipy-chipmunk.png" alt="ChiPy Coding Workshops" id="logo" aria-hidden>
+          ChiPy Coding Workshops
+    </a>
+
+    <ul>
+<li><a href="../../categories/">Categories</a></li>
+                <li><a href="../../about/">About</a></li>
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><div class="metadata">
+          
+
+        </div>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Django Project Night Tracker</a></h1>
+
+        <time datetime="2019-03-17T01:11:33-05:00" itemprop="datePublished">March 17, 2019</time></header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h2>The Project</h2>
+<p>In this project we will be building a CRUD-style web app using Django and SQLite3.</p>
+<p>With growing Project Night attendance, ChiPy would like to better keep track of Challenge participation, and the CSV sign up sheets just aren't cutting it. In this project we'll upgrade things a notch by creating a web app (using Django) to keep track of our data (in a basic SQLite3 database). The goal of our app is to have an easy way to enter and view our data, all while maintaining attendee's privacy. To save some time, the Django project has already been created, as well as the framework for the structure for the app we'll be working on. To learn how to set up a Django app from scratch, check out https://docs.djangoproject.com/en/2.1/intro/tutorial01/#creating-a-project.</p>
+<p>By the end of this challenge, you'll have created a web app that looks something like this:</p>
+<p><img alt="screen shot 2018-08-15 at 12 48 46 pm" src="https://user-images.githubusercontent.com/19669890/44185211-951ebd80-a0d8-11e8-8d7f-515a0a99b2bf.png"></p>
+<h3>Setup</h3>
+<ol>
+<li>
+<p>Clone the project:</p>
+<blockquote>
+<p>git clone https://github.com/chicagopython/CodingWorkshops.git</p>
+</blockquote>
+</li>
+<li>
+<p>Set up a virtual environment, as desired:
+    ```
+    # If you are using Linux or OS X, run the following:
+    &gt; python3 -m venv venv
+    &gt; source venv/bin/activate</p>
+<h2>On Windows, run the following:</h2>
+<blockquote>
+<p>python3 -m venv venv
+venv\Scripts\activate
+```
+3. Navigate to the right folder:</p>
+<p>cd problems/webdev/django_pn_tracker</p>
+</blockquote>
+</li>
+<li>
+<p>Install our python package requirements:</p>
+<blockquote>
+<p>pip install -r requirements.txt</p>
+</blockquote>
+</li>
+</ol>
+<h3>Instructions</h3>
+<p>In the steps that follow, instructions will generally reference exactly where code changes need to be made. In the files themselves you'll see large commented blocks of instructions indicating that you're in the right spot. If you don't see commented instructions, double check that you read the prompt correctly. Each step will also have a link to a resource that should directly help you solve the problem at hand. Even if you're not stuck, it's recommended to check out the link to improve your understanding of WHY we're doing what we're doing.</p>
+<p>To help visualize the locations of the file, here's the full file tree:</p>
+<pre class="code literal-block"><span></span>├── db.sqlite3
+├── django_pn_tracker
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── apps
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   └── __init__.cpython-36.pyc
+│   │   └── challenges
+│   │       ├── __init__.py
+│   │       ├── __pycache__
+│   │       ├── admin.py
+│   │       ├── apps.py
+│   │       ├── forms.py
+│   │       ├── migrations
+│   │       │   ├── 0001_initial.py
+│   │       │   ├── __init__.py
+│   │       │   └── __pycache__
+│   │       ├── models.py
+│   │       ├── templates
+│   │       │   └── challenges
+│   │       │       ├── delete.html
+│   │       │       ├── edit.html
+│   │       │       └── list.html
+│   │       ├── tests.py
+│   │       ├── urls.py
+│   │       └── views.py
+│   ├── settings.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── bootstrap.min.css
+│   │   │   └── master.css
+│   │   └── js
+│   │       ├── bootstrap.min.js
+│   │       └── main.js
+│   ├── templates
+│   │   ├── base.html
+│   │   └── index.html
+│   ├── urls.py
+│   ├── views.py
+│   └── wsgi.py
+├── manage.py
+├── requirements.txt
+└── setup.cfg
+</pre>
+
+
+<h4>Step 0: Run the app as is</h4>
+<p>Before we dig in, let's see what the app currently looks like. This'll also confirm that install/setup went as planned. To run the app locally:</p>
+<pre class="code literal-block"><span></span>&gt; ./manage.py runserver
+</pre>
+
+
+<p>Then open the link provided in the terminal: http://127.0.0.1:8000/</p>
+<h4>Step 1: Configure settings</h4>
+<p>While our project already has a lot written, we need to configure settings for our new app. Django projects store these settings in <code>settings.py</code> by default. </p>
+<p><strong>a. Add our 'challenges' app to <code>INSTALLED_APPS</code></strong> in <code>settings.py</code>. This is actually done already, so the app would run as is without error. Still, check the comment in the code to see how we add apps.</p>
+<p><strong>b. Point Django to our sqlite db</strong> called <code>db.sqlite3</code>. See https://docs.djangoproject.com/en/2.1/ref/settings/#databases for help with the syntax.</p>
+<h4>Step 2: Create and integrate a new database table</h4>
+<p>Our initial objective is to set up a table to display all of our challenge participantion records. Table schemas can be found in <code>models.py</code>. </p>
+<p>a. Several tables already exist, but we want to create a new table called <code>AttendeeInfo</code> to include:</p>
+<ul>
+<li>
+<code>date</code> - Date of the event</li>
+<li>
+<code>name</code> - the participant's name</li>
+<li>
+<code>challenge</code> - the name of the challenge. Don't forget to account for the foreign key relationship with <code>Challenge</code> </li>
+<li>
+<code>skills</code> - for now an integer representing a score in the range of 0-10. Read more avoud validators: https://docs.djangoproject.com/en/2.1/ref/validators/</li>
+</ul>
+<p>Read more about models here: https://docs.djangoproject.com/en/2.1/topics/db/models/</p>
+<p><strong>b. Create/complete migration.</strong> In order for our changes to take effect we need to create a migration and then actually migrate it.</p>
+<pre class="code literal-block"><span></span>&gt; ./manage.py makemigrations
+</pre>
+
+
+<p>This is a little bit of Django magic. Under the hood Django is automatically generating the SQL commands necessary to update your database. You can see the actual underlying commands in <code>apps/challenges/migrations</code>, where a file of commands is created each time we run makemigrations.</p>
+<p>Normally you would see a message like:</p>
+<pre class="code literal-block"><span></span>Migrations for 'challenges':
+  django_pn_tracker/apps/challenges/migrations/0002_auto_20180816_1445.py
+    - &lt;actions here&gt;
+    ...
+</pre>
+
+
+<p>However, since the table for our new model actually already exists in db.sqlite3 (purely for the sake of having example records for later steps), if everything is working correctly so far you should see:</p>
+<pre class="code literal-block"><span></span>No changes detected
+</pre>
+
+
+<p>In order to actually make our changes, run:</p>
+<pre class="code literal-block"><span></span>&gt; ./manage.py migrate
+</pre>
+
+
+<p>c. <strong>Register <code>models.AttendeeInfo</code> in <code>admin.py</code>.</strong> Don't worry about what this does yet, we'll get to it in a later instruction.</p>
+<h4>Step 3: Create a page to view the table's records</h4>
+<p>Now that we've created our table, we want to create a page to view our new table's records.</p>
+<p><strong>a. Create the URL</strong> we want for our page in <code>urls.py</code>. We will use <code>""</code> and reference <code>challenges_list</code> in views. Learn more about Django URLs: https://docs.djangoproject.com/en/2.1/topics/http/urls/</p>
+<p><strong>b. Create the new <code>challenge_list</code> view in <code>views.py</code></strong> for our new page. Django has the concept of “views” to encapsulate the logic responsible for processing a user’s request and for returning the response. Syntactically, a view is just a regular python function (or class) that will be called when we travel to the associated url. To learn more about writing views, check out: https://docs.djangoproject.com/en/2.1/topics/http/views/ . In the case of challenge_list, use the following variable names:</p>
+<ul>
+<li>
+<code>template_name</code> as the variable that points to <code>challenges/list.html</code>,</li>
+<li>
+<code>attendees</code> should be all of our AttendeeInfo objects (see https://docs.djangoproject.com/en/2.1/topics/db/queries/#retrieving-objects), and</li>
+<li>
+<code>context</code> should be a dictionary mapping the string <code>"attendees"</code> to our <code>attendees</code> variable. </li>
+</ul>
+<p>The names selected are only important to match the templates that we've already started for you.</p>
+<p><strong>c. Create a template.</strong> Templates are the layers of your app that create the structure of the pages visible to users. Django uses a templating language that's very similar to HTML plus some interactivity with our python code, mostly via syntax surrounded by curly braces. Instead of starting totally from scratch, the template for our record listing is already started in <code>list.html</code>, so we'll just fill in the missing section (as indicated with comments). To learn more about template basics (and see some syntax examples) check out: https://docs.djangoproject.com/en/2.1/ref/templates/language/#templates .</p>
+<p><strong>d. Add a link to our new view in our main navigation bar.</strong> This can be done in the body of <code>base.html</code>.</p>
+<h4>Step 4: Add CRUD capability</h4>
+<p>Now we can view our new table, but there's nothing in it! Let's create a way to add/edit/delete entries via forms on the front end. To do this, we'll take our steps from 3 and add a little more complexity ala forms:</p>
+<p><strong>a. Create the URL</strong> we want for our page in <code>urls.py</code>. We will reference <code>challenges_add</code>, <code>challenges_edit</code>, and <code>challenges_delete</code> views. Note that edit and delete will reference existing objects - the url pattern therefore requires special syntax (revisit https://docs.djangoproject.com/en/2.1/topics/http/urls/ for help)</p>
+<p><strong>b. Create forms.</strong> Set up <code>AttendeeEditForm</code> and <code>ConfirmForm</code> in <code>forms.py</code>. We will reference these in our views. Learn more about model forms here: https://docs.djangoproject.com/en/2.1/topics/forms/modelforms/ , and more about fields here: https://docs.djangoproject.com/en/2.1/ref/forms/fields/ .</p>
+<p><strong>c. Create the three new views in views.py for our new pages.</strong> Mimic the template_name, attendees, and context variable names and style from challenge_list. Use the variable form to instantiate the form object. For example, paste this into challenge_add: <code>form = forms.AttendeeEditForm()</code> . See https://docs.djangoproject.com/en/2.1/topics/forms/#the-view and for help.</p>
+<p><strong>d. Create templates.</strong> These are already started for you in <code>edit.html</code> and <code>delete.html</code>, so just fill in the missing section (as indicated). Note that add and edit will both use <code>edit.html</code>. Bonus hint: Are the edit and delete forms really different..? See https://docs.djangoproject.com/en/2.1/topics/forms/#the-template for help.</p>
+<p><strong>e. Add links.</strong> Add links for edit and delete in a new column in the existing table (requires editing <code>list.html</code> again).</p>
+<h4>Step 4: Add yourselves as records using our new forms</h4>
+<p>Now that we've created our MVP, let's test it out by adding records for ourselves for this event. You'll notice that there's no event option in the dropdown for this Intro to Django event. For now, add yourselves under 'Demo Event'.</p>
+<h4>Step 5: Add interface to add new events</h4>
+<p>You've seen how to create a form and have a couple of example templates you've already worked with. Now it's time to do one from scratch. Create a form to add challenge records to the Challenge table. You will need a new template in the same folder as our delete.html, edit.html, and list.html. You'll also need to create a new form in forms.py. Lastly we'll need a way to get to our page to add a challenge - let's put it on the main navigation bar next to Challenges List (again in the body of base.html)</p>
+<h4>Step 6: Add login requirements so our app isn't open to the world.</h4>
+<p>After all, we'll have participants names and experience levels stored - that's sensitive information. You're on your own again! If you need help:
+<em> https://docs.djangoproject.com/en/2.1/topics/auth/default/#the-login-required-decorator
+</em> https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators</p>
+</div>
+    </div>
+    <aside class="postpromonav"><div>
+    <span class="hidden-print">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span>
+    <span class="hidden-print">
+      <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-url="https://chicagopython.github.io/posts/django-project-night-tracker/"></script></span>
+    </div>
+    <nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/django/" rel="tag">django</a></li>
+            <li><a class="tag p-category" href="../../categories/webdev/" rel="tag">webdev</a></li>
+      </ul>
+<ul class="pager hidden-print">
+<li>
+            <a href="../unit-testing-and-continuous-integration-with-pytest-travis/" rel="prev" class="previous" title="Unit Testing and Continuous Integration with Pytest &amp; Travis"><span aria-hidden="true">‹ </span>Older</a>
+        </li>
+        <li>
+            <span class="disabled">Newer<span aria-hidden="true"> ›</span></span>
+        </li>
+    </ul></nav></aside></article></main><footer id="footer"><p class="light-sans">© Chicago Python User Group · Subscribe via <a href="../../rss.xml">RSS</a> · Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> · 
+<a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html">
+<img alt="Gnu Public License version 3.0" style="border-width:0;" src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png"></a></p>
+            
+        </footer>
+</body>
+</html>

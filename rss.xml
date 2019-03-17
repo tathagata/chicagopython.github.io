@@ -3,8 +3,907 @@
 &lt;a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html"&gt;
 &lt;img alt="Gnu Public License version 3.0"
 style="border-width:0;"
-src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 17 Mar 2019 05:04:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>T test</title><link>https://chicagopython.github.io/posts/t-test/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;h2&gt;Heading&lt;/h2&gt;
-&lt;p&gt;The python should be deployed.&lt;/p&gt;&lt;/div&gt;</description><category>test post</category><guid>https://chicagopython.github.io/posts/t-test/</guid><pubDate>Sun, 17 Mar 2019 04:59:16 GMT</pubDate></item><item><title>Python Koans</title><link>https://chicagopython.github.io/posts/python-koans/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;p&gt;For this exercise we will learn the Zen of Python using Test Driven Development.
+src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 17 Mar 2019 07:09:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Django Project Night Tracker</title><link>https://chicagopython.github.io/posts/django-project-night-tracker/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;h2&gt;The Project&lt;/h2&gt;
+&lt;p&gt;In this project we will be building a CRUD-style web app using Django and SQLite3.&lt;/p&gt;
+&lt;p&gt;With growing Project Night attendance, ChiPy would like to better keep track of Challenge participation, and the CSV sign up sheets just aren't cutting it. In this project we'll upgrade things a notch by creating a web app (using Django) to keep track of our data (in a basic SQLite3 database). The goal of our app is to have an easy way to enter and view our data, all while maintaining attendee's privacy. To save some time, the Django project has already been created, as well as the framework for the structure for the app we'll be working on. To learn how to set up a Django app from scratch, check out https://docs.djangoproject.com/en/2.1/intro/tutorial01/#creating-a-project.&lt;/p&gt;
+&lt;p&gt;By the end of this challenge, you'll have created a web app that looks something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="screen shot 2018-08-15 at 12 48 46 pm" src="https://user-images.githubusercontent.com/19669890/44185211-951ebd80-a0d8-11e8-8d7f-515a0a99b2bf.png"&gt;&lt;/p&gt;
+&lt;h3&gt;Setup&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Clone the project:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git clone https://github.com/chicagopython/CodingWorkshops.git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set up a virtual environment, as desired:
+    ```
+    # If you are using Linux or OS X, run the following:
+    &amp;gt; python3 -m venv venv
+    &amp;gt; source venv/bin/activate&lt;/p&gt;
+&lt;h2&gt;On Windows, run the following:&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;python3 -m venv venv
+venv\Scripts\activate
+```
+3. Navigate to the right folder:&lt;/p&gt;
+&lt;p&gt;cd problems/webdev/django_pn_tracker&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install our python package requirements:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;pip install -r requirements.txt&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Instructions&lt;/h3&gt;
+&lt;p&gt;In the steps that follow, instructions will generally reference exactly where code changes need to be made. In the files themselves you'll see large commented blocks of instructions indicating that you're in the right spot. If you don't see commented instructions, double check that you read the prompt correctly. Each step will also have a link to a resource that should directly help you solve the problem at hand. Even if you're not stuck, it's recommended to check out the link to improve your understanding of WHY we're doing what we're doing.&lt;/p&gt;
+&lt;p&gt;To help visualize the locations of the file, here's the full file tree:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;├── db.sqlite3
+├── django_pn_tracker
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── apps
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   └── __init__.cpython-36.pyc
+│   │   └── challenges
+│   │       ├── __init__.py
+│   │       ├── __pycache__
+│   │       ├── admin.py
+│   │       ├── apps.py
+│   │       ├── forms.py
+│   │       ├── migrations
+│   │       │   ├── 0001_initial.py
+│   │       │   ├── __init__.py
+│   │       │   └── __pycache__
+│   │       ├── models.py
+│   │       ├── templates
+│   │       │   └── challenges
+│   │       │       ├── delete.html
+│   │       │       ├── edit.html
+│   │       │       └── list.html
+│   │       ├── tests.py
+│   │       ├── urls.py
+│   │       └── views.py
+│   ├── settings.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── bootstrap.min.css
+│   │   │   └── master.css
+│   │   └── js
+│   │       ├── bootstrap.min.js
+│   │       └── main.js
+│   ├── templates
+│   │   ├── base.html
+│   │   └── index.html
+│   ├── urls.py
+│   ├── views.py
+│   └── wsgi.py
+├── manage.py
+├── requirements.txt
+└── setup.cfg
+&lt;/pre&gt;
+
+
+&lt;h4&gt;Step 0: Run the app as is&lt;/h4&gt;
+&lt;p&gt;Before we dig in, let's see what the app currently looks like. This'll also confirm that install/setup went as planned. To run the app locally:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; ./manage.py runserver
+&lt;/pre&gt;
+
+
+&lt;p&gt;Then open the link provided in the terminal: http://127.0.0.1:8000/&lt;/p&gt;
+&lt;h4&gt;Step 1: Configure settings&lt;/h4&gt;
+&lt;p&gt;While our project already has a lot written, we need to configure settings for our new app. Django projects store these settings in &lt;code&gt;settings.py&lt;/code&gt; by default. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;a. Add our 'challenges' app to &lt;code&gt;INSTALLED_APPS&lt;/code&gt;&lt;/strong&gt; in &lt;code&gt;settings.py&lt;/code&gt;. This is actually done already, so the app would run as is without error. Still, check the comment in the code to see how we add apps.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;b. Point Django to our sqlite db&lt;/strong&gt; called &lt;code&gt;db.sqlite3&lt;/code&gt;. See https://docs.djangoproject.com/en/2.1/ref/settings/#databases for help with the syntax.&lt;/p&gt;
+&lt;h4&gt;Step 2: Create and integrate a new database table&lt;/h4&gt;
+&lt;p&gt;Our initial objective is to set up a table to display all of our challenge participantion records. Table schemas can be found in &lt;code&gt;models.py&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;a. Several tables already exist, but we want to create a new table called &lt;code&gt;AttendeeInfo&lt;/code&gt; to include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;date&lt;/code&gt; - Date of the event&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt; - the participant's name&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;challenge&lt;/code&gt; - the name of the challenge. Don't forget to account for the foreign key relationship with &lt;code&gt;Challenge&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;skills&lt;/code&gt; - for now an integer representing a score in the range of 0-10. Read more avoud validators: https://docs.djangoproject.com/en/2.1/ref/validators/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Read more about models here: https://docs.djangoproject.com/en/2.1/topics/db/models/&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;b. Create/complete migration.&lt;/strong&gt; In order for our changes to take effect we need to create a migration and then actually migrate it.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; ./manage.py makemigrations
+&lt;/pre&gt;
+
+
+&lt;p&gt;This is a little bit of Django magic. Under the hood Django is automatically generating the SQL commands necessary to update your database. You can see the actual underlying commands in &lt;code&gt;apps/challenges/migrations&lt;/code&gt;, where a file of commands is created each time we run makemigrations.&lt;/p&gt;
+&lt;p&gt;Normally you would see a message like:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;Migrations for 'challenges':
+  django_pn_tracker/apps/challenges/migrations/0002_auto_20180816_1445.py
+    - &amp;lt;actions here&amp;gt;
+    ...
+&lt;/pre&gt;
+
+
+&lt;p&gt;However, since the table for our new model actually already exists in db.sqlite3 (purely for the sake of having example records for later steps), if everything is working correctly so far you should see:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;No changes detected
+&lt;/pre&gt;
+
+
+&lt;p&gt;In order to actually make our changes, run:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; ./manage.py migrate
+&lt;/pre&gt;
+
+
+&lt;p&gt;c. &lt;strong&gt;Register &lt;code&gt;models.AttendeeInfo&lt;/code&gt; in &lt;code&gt;admin.py&lt;/code&gt;.&lt;/strong&gt; Don't worry about what this does yet, we'll get to it in a later instruction.&lt;/p&gt;
+&lt;h4&gt;Step 3: Create a page to view the table's records&lt;/h4&gt;
+&lt;p&gt;Now that we've created our table, we want to create a page to view our new table's records.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;a. Create the URL&lt;/strong&gt; we want for our page in &lt;code&gt;urls.py&lt;/code&gt;. We will use &lt;code&gt;""&lt;/code&gt; and reference &lt;code&gt;challenges_list&lt;/code&gt; in views. Learn more about Django URLs: https://docs.djangoproject.com/en/2.1/topics/http/urls/&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;b. Create the new &lt;code&gt;challenge_list&lt;/code&gt; view in &lt;code&gt;views.py&lt;/code&gt;&lt;/strong&gt; for our new page. Django has the concept of “views” to encapsulate the logic responsible for processing a user’s request and for returning the response. Syntactically, a view is just a regular python function (or class) that will be called when we travel to the associated url. To learn more about writing views, check out: https://docs.djangoproject.com/en/2.1/topics/http/views/ . In the case of challenge_list, use the following variable names:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;template_name&lt;/code&gt; as the variable that points to &lt;code&gt;challenges/list.html&lt;/code&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;attendees&lt;/code&gt; should be all of our AttendeeInfo objects (see https://docs.djangoproject.com/en/2.1/topics/db/queries/#retrieving-objects), and&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;context&lt;/code&gt; should be a dictionary mapping the string &lt;code&gt;"attendees"&lt;/code&gt; to our &lt;code&gt;attendees&lt;/code&gt; variable. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The names selected are only important to match the templates that we've already started for you.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;c. Create a template.&lt;/strong&gt; Templates are the layers of your app that create the structure of the pages visible to users. Django uses a templating language that's very similar to HTML plus some interactivity with our python code, mostly via syntax surrounded by curly braces. Instead of starting totally from scratch, the template for our record listing is already started in &lt;code&gt;list.html&lt;/code&gt;, so we'll just fill in the missing section (as indicated with comments). To learn more about template basics (and see some syntax examples) check out: https://docs.djangoproject.com/en/2.1/ref/templates/language/#templates .&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;d. Add a link to our new view in our main navigation bar.&lt;/strong&gt; This can be done in the body of &lt;code&gt;base.html&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;Step 4: Add CRUD capability&lt;/h4&gt;
+&lt;p&gt;Now we can view our new table, but there's nothing in it! Let's create a way to add/edit/delete entries via forms on the front end. To do this, we'll take our steps from 3 and add a little more complexity ala forms:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;a. Create the URL&lt;/strong&gt; we want for our page in &lt;code&gt;urls.py&lt;/code&gt;. We will reference &lt;code&gt;challenges_add&lt;/code&gt;, &lt;code&gt;challenges_edit&lt;/code&gt;, and &lt;code&gt;challenges_delete&lt;/code&gt; views. Note that edit and delete will reference existing objects - the url pattern therefore requires special syntax (revisit https://docs.djangoproject.com/en/2.1/topics/http/urls/ for help)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;b. Create forms.&lt;/strong&gt; Set up &lt;code&gt;AttendeeEditForm&lt;/code&gt; and &lt;code&gt;ConfirmForm&lt;/code&gt; in &lt;code&gt;forms.py&lt;/code&gt;. We will reference these in our views. Learn more about model forms here: https://docs.djangoproject.com/en/2.1/topics/forms/modelforms/ , and more about fields here: https://docs.djangoproject.com/en/2.1/ref/forms/fields/ .&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;c. Create the three new views in views.py for our new pages.&lt;/strong&gt; Mimic the template_name, attendees, and context variable names and style from challenge_list. Use the variable form to instantiate the form object. For example, paste this into challenge_add: &lt;code&gt;form = forms.AttendeeEditForm()&lt;/code&gt; . See https://docs.djangoproject.com/en/2.1/topics/forms/#the-view and for help.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;d. Create templates.&lt;/strong&gt; These are already started for you in &lt;code&gt;edit.html&lt;/code&gt; and &lt;code&gt;delete.html&lt;/code&gt;, so just fill in the missing section (as indicated). Note that add and edit will both use &lt;code&gt;edit.html&lt;/code&gt;. Bonus hint: Are the edit and delete forms really different..? See https://docs.djangoproject.com/en/2.1/topics/forms/#the-template for help.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;e. Add links.&lt;/strong&gt; Add links for edit and delete in a new column in the existing table (requires editing &lt;code&gt;list.html&lt;/code&gt; again).&lt;/p&gt;
+&lt;h4&gt;Step 4: Add yourselves as records using our new forms&lt;/h4&gt;
+&lt;p&gt;Now that we've created our MVP, let's test it out by adding records for ourselves for this event. You'll notice that there's no event option in the dropdown for this Intro to Django event. For now, add yourselves under 'Demo Event'.&lt;/p&gt;
+&lt;h4&gt;Step 5: Add interface to add new events&lt;/h4&gt;
+&lt;p&gt;You've seen how to create a form and have a couple of example templates you've already worked with. Now it's time to do one from scratch. Create a form to add challenge records to the Challenge table. You will need a new template in the same folder as our delete.html, edit.html, and list.html. You'll also need to create a new form in forms.py. Lastly we'll need a way to get to our page to add a challenge - let's put it on the main navigation bar next to Challenges List (again in the body of base.html)&lt;/p&gt;
+&lt;h4&gt;Step 6: Add login requirements so our app isn't open to the world.&lt;/h4&gt;
+&lt;p&gt;After all, we'll have participants names and experience levels stored - that's sensitive information. You're on your own again! If you need help:
+&lt;em&gt; https://docs.djangoproject.com/en/2.1/topics/auth/default/#the-login-required-decorator
+&lt;/em&gt; https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators&lt;/p&gt;&lt;/div&gt;</description><category>django</category><category>webdev</category><guid>https://chicagopython.github.io/posts/django-project-night-tracker/</guid><pubDate>Sun, 17 Mar 2019 06:11:33 GMT</pubDate></item><item><title>Unit Testing and Continuous Integration with Pytest &amp; Travis</title><link>https://chicagopython.github.io/posts/unit-testing-and-continuous-integration-with-pytest-travis/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;h2&gt;1. Introduction to PyTest and Continuous Integration&lt;/h2&gt;
+&lt;p&gt;Testing and Continuous Integration is at the heart of building good software.
+For this project we will be focus on writing tests for a given problem and use
+travis-ci for running the tests automatically everytime code is checked into Github.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Objectives&lt;/strong&gt;:
+In this project we will explore&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction to unit testing with pytest&lt;/li&gt;
+&lt;li&gt;How to setup continuous integration with Github and Travis-CI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.1. Setup Instructions&lt;/h3&gt;
+&lt;p&gt;For doing this project you will need a Github account, a Travis-ci.org account and git
+installed locally.&lt;/p&gt;
+&lt;h4&gt;1.1.1. Git and Github&lt;/h4&gt;
+&lt;p&gt;After completing the steps below you should have a github account and be able to push
+your local changes to this repository to github.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Follow the setup steps described &lt;a href="https://help.github.com/articles/set-up-git/"&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read the steps described in &lt;a href="https://help.github.com/articles/fork-a-repo"&gt;fork a repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Use the steps described above to fork this repository &lt;a href="https://github.com/chicagopython/CodingWorkshops"&gt;CodingWorkshops&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The changes that you make as a part of this exercise, will be pushed to the fork you created for this
+repository.&lt;/p&gt;
+&lt;p&gt;In case you have already have created a fork of this repository in your github account, you will
+want to bring it up to date with the recent changes. In that case,
+you will need to do the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/configuring-a-remote-for-a-fork/"&gt;configuring a remote fork&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/syncing-a-fork/"&gt;syncing a fok&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;1.1.2. Travis setup&lt;/h4&gt;
+&lt;p&gt;Continuous Integrration is a critical part of building your software. It automatically runs
+the tests when you check in code into your version control (git) and paves the way for
+continuous delivery, i.e. release often and release early.
+In this section we will set up a Continuous Integration pipeline with Travis-ci.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, head over to &lt;a href="https://travis-ci.org/."&gt;Travis-CI.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sign in with your Github account, and accept the terms and conditions.&lt;/li&gt;
+&lt;li&gt;On success, you will be landing on your profile page that lists the CodingWorkshop repository&lt;/li&gt;
+&lt;li&gt;Once you have located the repo, toggle the button next to the repository to enable travis CI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="travi-build-img" src="https://chicagopython.github.io/posts/unit-testing-and-continuous-integration-with-pytest-travis/EnableTravisCI.png"&gt;&lt;/p&gt;
+&lt;p&gt;If you have multiple repositories, you will have to search for the repository by typing in the name
+of the repository (CodingWorkshop) in the search bar on the dashboard page.&lt;/p&gt;
+&lt;h3&gt;1.2. Python&lt;/h3&gt;
+&lt;p&gt;This project has made no attempt to be compatible with Python 2.7. 😎&lt;/p&gt;
+&lt;p&gt;Recommended version: Python 3.6&lt;/p&gt;
+&lt;h3&gt;1.3. Quick Git command refresher&lt;/h3&gt;
+&lt;p&gt;Below are the few most used git commands&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;git checkout master          # checkout to master branch
+git checkout -b feature/cool # crate a new branch feature/cool
+git add -u                   # stage all the updates for commit
+git commit -am "Adding changes and commiting with a comment"
+git push origin master       # push commits to develop/ci branch
+&lt;/pre&gt;
+
+
+&lt;p&gt;Note for this exercise, we will be working on the master branch directly. However,
+that is NOT the best practice. Branches are cheap in git, so a new feature or fix
+would first go to a branch, get tested, code reviewed and finally merged to master.&lt;/p&gt;
+&lt;h3&gt;1.4. Exercise 0: Project Setup&lt;/h3&gt;
+&lt;p&gt;After completing the steps in setup, you should have the cloned versoin of the fork of CodingWorkshop
+repository in your local machine. Lets take the time to look at the structure of this
+project. All code is located under &lt;code&gt;/problems/py101/testing&lt;/code&gt; directory. So from your
+terminal go to the directory where you have cloned the repository.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;cd path/to/clone/problems/py101/testing
+&lt;/pre&gt;
+
+
+&lt;p&gt;Make sure you are in this directory for the remainder of this project.&lt;/p&gt;
+&lt;p&gt;Run &lt;code&gt;pwd&lt;/code&gt; (&lt;code&gt;cwd&lt;/code&gt; for Windows) on the command prompt to find out which directory you
+are on.&lt;/p&gt;
+&lt;p&gt;Your output should end in &lt;code&gt;problems/py101/testing&lt;/code&gt; and contain the files described
+below.&lt;/p&gt;
+&lt;h4&gt;1.4.1. &lt;code&gt;team_organizer.py&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;This file is a simplified implementation of the problem of grouping the project
+night attendees into teams of four based on the number of lines of code they have
+written such that in each team, two team members have more lines of code than the other.
+This is the system under test.&lt;/p&gt;
+&lt;h4&gt;1.4.2. &lt;code&gt;test_team_organizer.py&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;This file is the test for the above module written using Pytest.&lt;/p&gt;
+&lt;p&gt;These two files mentioned above are the only two files that we will be making
+modifications to for this project.&lt;/p&gt;
+&lt;h4&gt;1.4.3. &lt;code&gt;Makefile&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;This file contains the commands that are required building the project.
+You can run &lt;code&gt;make help&lt;/code&gt; to see what are the options.&lt;/p&gt;
+&lt;h4&gt;1.4.4. &lt;code&gt;Pipfile&lt;/code&gt; and &lt;code&gt;Pipfile.lock&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;These two files are used by &lt;code&gt;pipenv&lt;/code&gt; to create a virtual enviornment that
+isolates all the dependencies of this project from other python projects in your computer.
+Learn more about &lt;a href="https://docs.pipenv.org/"&gt;pipenv&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;1.4.5. &lt;code&gt;pytest.ini&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;This file contains the configuration for &lt;code&gt;pytest&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;1.4.6. &lt;code&gt;travis.yml&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;In addition to all the files in this directory, located at the root of the repository,
+is a file called &lt;code&gt;.travis.yml&lt;/code&gt;. This is used by the continuous intergration tool travis-ci.
+This contains the information on how to build this python project.&lt;/p&gt;
+&lt;h4&gt;1.4.7. Test your setup is working&lt;/h4&gt;
+&lt;p&gt;Just make a small edit on this file (README.md), commit and push the changes.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;git commit -am "Demo commit to check everything is working"
+git push origin master
+&lt;/pre&gt;
+
+
+&lt;p&gt;If travis-ci.org gets triggered and is all green, your push has successfully ran through
+the linting and testing pipeline.&lt;/p&gt;
+&lt;p&gt;To display that badge of honor, click on the build button next on the travis page and select
+Markdown from the second dropdown. Copy the markdown code displayed and add it to the top
+of this file (README.md).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="travi-build-img" src="https://chicagopython.github.io/posts/unit-testing-and-continuous-integration-with-pytest-travis/travis-build-img.png"&gt;&lt;/p&gt;
+&lt;p&gt;If you run into issues, &lt;a href="https://chipy.slack.com/messages/C093F7W8P/details/"&gt;ask your question on slack&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;1.5. Exercise 1: Build&lt;/h3&gt;
+&lt;p&gt;From the &lt;code&gt;/problems/py101/testing&lt;/code&gt; directory, run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;make
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Which packages got installed?&lt;/li&gt;
+&lt;li&gt;Which version of python is getting used?&lt;/li&gt;
+&lt;li&gt;How many tests pass, skipped and how long did it take?&lt;/li&gt;
+&lt;li&gt;Note a new directory &lt;code&gt;htmlcov&lt;/code&gt; was created. We will revisit this in Exericse 5.&lt;/li&gt;
+&lt;li&gt;What is difference in output when you run the &lt;code&gt;make&lt;/code&gt; command again?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;1.6. Exercise 2: Run the program&lt;/h3&gt;
+&lt;p&gt;Start by running&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python team_organizer.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;This will drop you to the program's interactive prompt.
+Below is a sample interaction where users named a, b, c,
+d, e and f are added using the add command.
+Following that, we run the &lt;code&gt;print&lt;/code&gt; command where the users
+are grouped in to max of size four where two users have
+written less lines of code than the others.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;```
+t (master *) testing $ python team_organizer.py
+Welcome to Chicago Python Project Night Team Organizer
+org&amp;gt; help
+help
+
+Documented commands (type help &amp;lt;topic&amp;gt;):
+========================================
+add  help  print
+
+Undocumented commands:
+======================
+exit
+
+org&amp;gt; help add
+help add
+Adds a new user. Needs Name slackhandle number_of_lines separated by space
+org&amp;gt; add a @a 100
+add a @a 100
+org&amp;gt; add b @b 200
+add b @b 200
+org&amp;gt; add c @c 300
+add c @c 300
+org&amp;gt; add d @d 400
+add d @d 400
+org&amp;gt; add e @e 500
+add e @e 500
+org&amp;gt; add f @f 50
+add f @f 50
+org&amp;gt; print
+print
+['f, a, e, d']
+b, c
+org&amp;gt;
+```
+&lt;/pre&gt;
+
+
+&lt;h3&gt;1.7. Exercise 3: Running the tests&lt;/h3&gt;
+&lt;p&gt;Run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;make test
+&lt;/pre&gt;
+
+
+&lt;p&gt;This will run the tests in the &lt;code&gt;test_team_organizer.py&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;Run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;pipenv run pytest --help
+&lt;/pre&gt;
+
+
+&lt;p&gt;Now check the flags that are present in the &lt;code&gt;pytest.ini&lt;/code&gt; file against
+the output of the &lt;code&gt;--help&lt;/code&gt; command to see what each one does.&lt;/p&gt;
+&lt;h3&gt;1.8. Execrise 4: Coverage&lt;/h3&gt;
+&lt;p&gt;When we first ran &lt;code&gt;make&lt;/code&gt;, &lt;code&gt;pytest&lt;/code&gt; created a directory called &lt;code&gt;htmlcov&lt;/code&gt;
+that show you the coverage information about &lt;code&gt;team_organizr,py&lt;/code&gt; code.
+Open the &lt;code&gt;index.html&lt;/code&gt; file inside &lt;code&gt;htmlcov&lt;/code&gt; to check the lines that
+has not been covered by the tests in the &lt;code&gt;test_team_organizer.py&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;What is the % coverage of the code at this point?
+Click on &lt;code&gt;team_organizer.py&lt;/code&gt; to see which lines are outside coverage.&lt;/p&gt;
+&lt;h3&gt;1.9. Exercise 6: Fail, Fix, Pass&lt;/h3&gt;
+&lt;p&gt;You are now all set to fix the tests. Goto &lt;code&gt;test_team_organizer.py&lt;/code&gt; and
+find &lt;code&gt;test_add_a_person_with_lower_than_median&lt;/code&gt; test. Notice this test is
+skipped when run with pytest. To fix it remove the decorator &lt;code&gt;pytest.mark.skip&lt;/code&gt;
+and run &lt;code&gt;pytest&lt;/code&gt; again. Commit the code and run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;make test
+&lt;/pre&gt;
+
+
+&lt;p&gt;Make the necessary changes so that the test passes.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;git commit -am "Fixed failing test"
+git push origin master
+&lt;/pre&gt;
+
+
+&lt;p&gt;Go to travis-ci.org and inspect the output before and after fixing the test.
+What is the coverage value at this point?&lt;/p&gt;
+&lt;h3&gt;1.10. Exercise 7: Fixtures&lt;/h3&gt;
+&lt;p&gt;The purpose of test fixtures is to provide a fixed baseline upon which tests can
+reliably and repeatedly execute.&lt;/p&gt;
+&lt;p&gt;We are making use of two fixtures - one factory method &lt;code&gt;person&lt;/code&gt; that churns out Persons
+as needed by &lt;code&gt;organizer&lt;/code&gt; fixture.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;test_count_number_of_teams&lt;/code&gt; is broken as well. How can you fix it?&lt;/p&gt;
+&lt;p&gt;Tip: To run a singe test, use&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;pipenv run pytest -k &amp;lt;name-of-test&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;h3&gt;1.11. Exercise 8: Implement the tests&lt;/h3&gt;
+&lt;p&gt;The two functions below have been left for you to implement.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;test_add_a_person_who_has_never_written_code_before&lt;/li&gt;
+&lt;li&gt;test_add_two_person_with_same_name_but_different_slack_handles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note the names of the tests are long and verbose to give you an idea of what
+what exactly you need to test.&lt;/p&gt;
+&lt;p&gt;Does implementing these tests have any effect on coverage results?
+Would it be still useful if there is no improvement in coverage?&lt;/p&gt;
+&lt;h3&gt;1.12. Exercise 9: Implement the tests first, then implement the feature&lt;/h3&gt;
+&lt;p&gt;For the following two tests, first implement the test that asserts the
+expected behavior. From the test name it should be evident from the test name.
+If you run the tests at this point, they should fail. Then go back to
+&lt;code&gt;team_organizer.py&lt;/code&gt; and implement the feature by changing the code.
+Once your implementation is complete, run &lt;code&gt;make test&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;test_adding_person_with_negative_lines_of_code_throws_exception&lt;/li&gt;
+&lt;li&gt;test_handle_duplicate_additions&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><category>ci/cd</category><category>pytest</category><category>testing</category><guid>https://chicagopython.github.io/posts/unit-testing-and-continuous-integration-with-pytest-travis/</guid><pubDate>Sun, 17 Mar 2019 06:08:40 GMT</pubDate></item><item><title>Flask Collage for Project Night Challengers</title><link>https://chicagopython.github.io/posts/flask-collage-for-project-night-challengers/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;h2&gt;Flask Collage for Project Night Challengers&lt;/h2&gt;
+&lt;p&gt;Build a small web app using Flask which accepts the meetup.com event id for tonight
+as a parameter and would fetch the profile pictures of all the attendees to create a
+collage. &lt;a href="https://twitter.com/Tathagata/status/746302962830540801"&gt;Here&lt;/a&gt; is an example
+of such a collage.&lt;/p&gt;
+&lt;p&gt;You'll need:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pip install flask&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pip install Flask-WTF&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pip install meetup-api&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;How to create a basic Flask app:
+Follow the instructions &lt;a href="http://flask.pocoo.org/docs/0.11/quickstart/"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;'Hello World!'&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;'__main__'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;&lt;code&gt;python testflask.py&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To get you started, the following piece of code will help you fetch the thumbnail
+images from meetup.com.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;meetup.api&lt;/span&gt;
+&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;meetup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Client&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'your_key'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;rsvps&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetRsvps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;event_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'235484841'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;urlname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'_ChiPy_'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;member_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;','&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'member'&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;'member_id'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;rsvps&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;members&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetMembers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;member_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;members&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;'{0},{1},{2}'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'name'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'id'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'photo'&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s1"&gt;'thumb_link'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt; &lt;span class="c1"&gt;# ignore those who do not have a complete profile&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Can you include the name along with the images in your collage?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add a search box to your collage, where you can search some one by name. 
+On a successful search, it should display that person and their name. On failure, it should give a proper error message.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add the following list of questions to your search result page that collects feedback on what an attendee would like to do &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Choices:
+- Help others with Python 101 questions
+- Help others with Python Data Science questions
+- Help others with Python Web Dev questions
+- Python 101 course (Beginner)
+- Attend Coding Workshop (Intermediate)
+- Attend RasberryPi Lab (Intermediate)
+- Work on my own project, get help from others &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy your app to a public hosting, share the link with the world!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Currently we are accepting RSVPs on both ChiPy's site and Chicago Pythonista's
+meetup page. Can you fetch the thumbnails from both the pages, eliminate the
+duplicates, and merge them to generate the collage?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;</description><category>flask</category><category>web-dev</category><guid>https://chicagopython.github.io/posts/flask-collage-for-project-night-challengers/</guid><pubDate>Sun, 17 Mar 2019 05:20:18 GMT</pubDate></item><item><title>Flask App for Project Night Challengers</title><link>https://chicagopython.github.io/posts/flask-app-to-group-project-night-challengers/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;h2&gt;Flask App for Project Night Challengers&lt;/h2&gt;
+&lt;p&gt;In this project we will be building a fully functional web app using Flask.&lt;/p&gt;
+&lt;p&gt;In the &lt;a href="https://github.com/chicagopython/CodingWorkshops/tree/master/problems/py101/python_team_project"&gt;team project command line application&lt;/a&gt;, we built an awesome command line
+application for creating teams out of people who have RSVP-ed for a Python Project
+Night. However, it is much easier to give a link of your app to someone
+than asking them to use a command line. So, we will create a web app, that allows
+forming teams from the list of RSVP-s from meetup.com. We
+will ask for the number of lines of code that a person has written in
+Python or an equivalent language and use it for putting them in a team. The number of lines is just a rough estimate. As a reference, the linux kernel is over 23 million lines of code!&lt;/p&gt;
+&lt;p&gt;In short, imagine this as a tool that one of the
+organizers uses to checkin attendees as they start coming in on the day of
+Project Night.&lt;/p&gt;
+&lt;p&gt;Short url for this page: &lt;strong&gt;https://git.io/vdQj6&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;Is this project for you&lt;/h4&gt;
+&lt;p&gt;Before you progress further, let's check if we are ready to solve this. You should&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have a personal computer with working wifi and power cord&lt;/li&gt;
+&lt;li&gt;Have Python 3 installed on your computer. Yep, Python 3 only.&lt;/li&gt;
+&lt;li&gt;Have &lt;a href="https://atom.io/"&gt;Atom&lt;/a&gt; or &lt;a href="https://www.sublimetext.com/3"&gt;Sublime Text&lt;/a&gt; installed in your computer.&lt;/li&gt;
+&lt;li&gt;Have written &amp;amp; ran programs in Python from the command line&lt;/li&gt;
+&lt;li&gt;Have some idea about lists, dictionaries and functions&lt;/li&gt;
+&lt;li&gt;Have created a virtual environment and installing packages with &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;You have read the &lt;a href="http://flask.pocoo.org/docs/0.12/quickstart/"&gt;flask quick introduction&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;What is not supported&lt;/h4&gt;
+&lt;p&gt;This project is not tested using Jupyter Notebook, PyCharm,
+Spider, or any other ide/text editor/programming environment for that matter.
+Atom or Sublime Text and the command line are the only supported development
+environment for this project.&lt;/p&gt;
+&lt;p&gt;Sounds good? Then let's dive into building a fully functional web app using flask.&lt;/p&gt;
+&lt;h4&gt;Minimum Viable Product&lt;/h4&gt;
+&lt;p&gt;Our objective is to build an web based interface using Flask that&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Shows a list of people who have RSVP-ed for the project Night&lt;/li&gt;
+&lt;li&gt;Each entry in the list should have&lt;/li&gt;
+&lt;li&gt;The name of the person&lt;/li&gt;
+&lt;li&gt;The meetup.com profile image of the person&lt;/li&gt;
+&lt;li&gt;An input text box that allows entering lines of code&lt;/li&gt;
+&lt;li&gt;On hitting the submit button we should get teams of four&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Flask&lt;/h4&gt;
+&lt;p&gt;For building the web interface, we will be using Flask.
+Flask is a micro web framework - it takes care of handling of the HTTP
+protocol for you and allows you focus on your application. It is flexible,
+lightweight yet powerful.&lt;/p&gt;
+&lt;h4&gt;Setup your environment&lt;/h4&gt;
+&lt;h5&gt;Get the source code&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If you are familiar with &lt;code&gt;git&lt;/code&gt;, run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/chicagopython/CodingWorkshops.git
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If not, go to https://github.com/chicagopython/CodingWorkshops&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Click on the Download Zip and unzip the file that gets downloaded&lt;/li&gt;
+&lt;li&gt;From your command line, change directory to the path where you have downloaded it.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On linux or OS X&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cd path/to/CodingWorkshops/problems/webdev/flask_team_project/
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On Windows&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cd path\to\CodingWorkshops\problems\webdev\flask_team_project
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here you will find the basic skeleton of the app under &lt;code&gt;app.py&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;Set up virtualenv&lt;/h4&gt;
+&lt;p&gt;If you are using Linux or OS X, run the following to create a new virtualenv&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+export FLASK_APP=app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;On Windows, run the following&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python3 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+set %FLASK_APP%=app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;&lt;a href="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj"&gt;&lt;img alt="asciicast" src="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Feature 0: run app.py&lt;/h4&gt;
+&lt;p&gt;With your environment now set up run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;flask run
+&lt;/pre&gt;
+
+
+&lt;p&gt;And you'll see 🔥.&lt;/p&gt;
+&lt;p&gt;The reason is there is a string in the &lt;code&gt;app.py&lt;/code&gt; file that allows meetup.com to identify who is trying to get data from them. It is called the API key. The one currently in the code is one of my old ones. You need to get one for your team from &lt;a href="https://secure.meetup.com/meetup_api/key/"&gt;here&lt;/a&gt; - obviously, you'll have to be logged into meetup.com to get the key.
+Plug in your key whereever most relevant in &lt;code&gt;app.py&lt;/code&gt; and run the above command again.&lt;/p&gt;
+&lt;p&gt;This will start a &lt;a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server"&gt;web server&lt;/a&gt; on port 5000.
+Next load up http://locahost:5000/rsvps in your web browser. &lt;/p&gt;
+&lt;p&gt;This will show you the list of people who RSVPed for a previous meetup.
+Goto tonight's meetup page and get the meetup id from the url.&lt;/p&gt;
+&lt;p&gt;https://www.meetup.com/&lt;em&gt;ChiPy&lt;/em&gt;/events/244121900/&lt;/p&gt;
+&lt;p&gt;The last section of the url is the &lt;code&gt;event_id&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;Feature 1: Read app.py&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;app.py&lt;/code&gt; is the script is where the magic happens.&lt;/p&gt;
+&lt;p&gt;Lets start at the routes:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;@app.route('/rsvps')
+def rsvps():
+
+
+@app.route('/teams', methods=['GET', 'POST'])
+def teams():
+&lt;/pre&gt;
+
+
+&lt;p&gt;Discuss among the team how render_template function is used in rsvps and teams
+function.&lt;/p&gt;
+&lt;p&gt;Two useful tools are pretty print and &lt;code&gt;pdb&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;Pretty print&lt;/h5&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;pp&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member_rsvps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;This will give you a better view of what the function &lt;code&gt;get_names()&lt;/code&gt; returns.&lt;/p&gt;
+&lt;h5&gt;pdb&lt;/h5&gt;
+&lt;p&gt;Python comes with a debugger &lt;code&gt;pdb&lt;/code&gt;. Here's a &lt;a href="https://appletree.or.kr/quick_reference_cards/Python/Python%20Debugger%20Cheatsheet.pdf"&gt;cheat sheet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can stick the following line anywhere in the code and make it halt so that you can better inspect the data and flow.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pdb&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pdb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_trace&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;h4&gt;Feature 2: Show profile images in rsvps&lt;/h4&gt;
+&lt;p&gt;Make changes to rsvps.html (inside templates) to show images of next to the
+names of the people.&lt;/p&gt;
+&lt;h4&gt;Feature 3: Add a text box next for lines of code&lt;/h4&gt;
+&lt;p&gt;Add an input type textbox that will take a number as input&lt;/p&gt;
+&lt;h4&gt;Feature 4: Display the lines of code&lt;/h4&gt;
+&lt;p&gt;On hitting submit, the numbers you entered against each person should show up
+on the &lt;code&gt;/teams&lt;/code&gt; page.&lt;/p&gt;
+&lt;h4&gt;Feature 5: Display teams&lt;/h4&gt;
+&lt;p&gt;As of now, everybody is listed under one team: Team 1.
+Split the list of people selected into teams of 4&lt;/p&gt;
+&lt;p&gt;Your display of each team should include&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;Team Number: XYZ
+Name of team member1, Lines of code, (pic)
+Name of team member2, Lines of code, (pic)
+Name of team member3, Lines of code, (pic)
+Name of team member4, Lines of code, (pic)
+(Total lines of code:)
+&lt;/pre&gt;
+
+
+&lt;p&gt;where things in () are optional.
+There is no specific criteria for creating the teams as of now. We handle that
+next.&lt;/p&gt;
+&lt;h4&gt;Feature 6: Tell the world&lt;/h4&gt;
+&lt;p&gt;Record a gif of your app in motion and tweet tweet the link to @chicagopython with "Python Project Night Mentorship". Include the twitter handles of your team members.&lt;/p&gt;
+&lt;h4&gt;Feature 7: Integrate team creating logic (optional)&lt;/h4&gt;
+&lt;p&gt;Code reuse is a hallmark well written code base. Of course, we are
+not talking about copy pasting the code, but using the abstractions that a
+programming language provides so that there is minimum duplication of code.&lt;/p&gt;
+&lt;p&gt;Use the code that you wrote in the team project command line application. The logic
+that you have implemented earlier for grouping your list of people into teams
+should now be used for creating your teams.&lt;/p&gt;
+&lt;p&gt;Thanks! Thats all folks!
+If you found a bug or think you some instructions are missing - just open a issue in this repository.&lt;/p&gt;&lt;/div&gt;</description><category>flask</category><category>web-dev</category><guid>https://chicagopython.github.io/posts/flask-app-to-group-project-night-challengers/</guid><pubDate>Sun, 17 Mar 2019 05:12:37 GMT</pubDate></item><item><title>Command line App for Grouping Project Night Challengers</title><link>https://chicagopython.github.io/posts/command-line-app-for-grouping-project-night-challengers/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;h2&gt;Command line App for Grouping Project Night Challengers&lt;/h2&gt;
+&lt;p&gt;The organizers of Project Nights need your help! Grouping people for
+team projects is a manual task. Why do it manually, when
+we can automate it?&lt;/p&gt;
+&lt;h3&gt;Is this project for you&lt;/h3&gt;
+&lt;p&gt;Before you progress further, let's check if we are ready to solve this. You should&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have a personal computer with working wifi and power chord&lt;/li&gt;
+&lt;li&gt;Have Python 3 installed on your computer. Yep, Python 3 only.&lt;/li&gt;
+&lt;li&gt;Have &lt;a href="https://atom.io/"&gt;Atom&lt;/a&gt; or &lt;a href="https://www.sublimetext.com/3"&gt;Sublime Text&lt;/a&gt; installed in your computer.&lt;/li&gt;
+&lt;li&gt;Have written &amp;amp; ran programs in Python from the command line&lt;/li&gt;
+&lt;li&gt;Have some idea about lists, dictionaries and functions&lt;/li&gt;
+&lt;li&gt;Have some idea about &lt;code&gt;virtualenv&lt;/code&gt; and installing packages with &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This project is not tested using Jupyter Notebook, PyCharm,
+Spider, or any other ide/text editor/programming environment for that matter.
+Atom or Sublime Text and the command line are the only supported development environment for this project.&lt;/p&gt;
+&lt;p&gt;Short url for this page: &lt;strong&gt;https://git.io/vdv43&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sounds reasonable? Then let's dive in - and build an awesome command line app using python.&lt;/p&gt;
+&lt;h3&gt;Can command line applications be cool&lt;/h3&gt;
+&lt;p&gt;You bet!
+Checkout this PyCon 2017 video on which this project is based&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=hJhZhLg3obk" target="_blank"&gt;&lt;img src="http://img.youtube.com/vi/hJhZhLg3obk/0.jpg" alt="Amjith Ramanujam Awesome Command Line Tools PyCon 2017" width="560" height="315" border="10"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The slides are available &lt;a href="https://speakerdeck.com/pycon2017/amjith-ramanujam-awesome-command-line-tools"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;What is a Team Project&lt;/h4&gt;
+&lt;p&gt;Glad you asked! A team project is an hour long problem solving session where each team
+consists of four members of different expertise level. The teams are formed from the
+list of attendees of the project night.&lt;/p&gt;
+&lt;h4&gt;The Objective&lt;/h4&gt;
+&lt;p&gt;Our objective is to build an awesome command line application in Python3 that
+- allows creating list of people who want to participate in a team project
+- once the list is created, the program automatically creates teams of four&lt;/p&gt;
+&lt;h4&gt;A Balanced Team&lt;/h4&gt;
+&lt;p&gt;To keep the team composition balanced in terms of experience, we want every team
+to have two members with more experience than the other two.
+Measuring experience is very subjective and difficult, but we will keep it simple.
+We will rely on a (not very scientific) metic - lines of code written till date.&lt;/p&gt;
+&lt;p&gt;We will create a list by taking names of people from tonight's RSVP list. Along with their name we will also include the number of lines of code that person has written till date in Python or an equivalent language. Imagine this as a tool that one of the organizers uses to checkin attendees as they start coming in on the day of Project Night.&lt;/p&gt;
+&lt;p&gt;And yeah, this number of lines can be just a rough estimate. As a
+reference, the linux kernel is over 23 million lines of code!&lt;/p&gt;
+&lt;h4&gt;Bootstrap&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If you are familiar with &lt;code&gt;git&lt;/code&gt;, run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/chicagopython/CodingWorkshops.git
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If not, go to https://github.com/chicagopython/CodingWorkshops&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Click on the Download Zip and unzip the file that gets downloaded&lt;/li&gt;
+&lt;li&gt;From your command line, change directory to the path where you have downloaded it.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On linux or OS X&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cd path/to/CodingWorkshops/problems/py101/python_team_project/
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On Windows&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cd path\to\CodingWorkshops\problems\py101\python_team_project
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here you will find the basic skeleton of the app under &lt;code&gt;app.py&lt;/code&gt;. (after September 21, 2017)&lt;/p&gt;
+&lt;h4&gt;Set up virtualenv&lt;/h4&gt;
+&lt;p&gt;If you are using Linux or OS X, run the following to create a new virtualenv&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;On Windows, run the following&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python3 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;&lt;a href="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj"&gt;&lt;img alt="asciicast" src="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Next let's get started by looking into the code.&lt;/p&gt;
+&lt;h3&gt;Feature 0: Look into app.py&lt;/h3&gt;
+&lt;p&gt;app.py is the script contains some code to get you started.
+We will be using two external libraries for this
+program.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python_prompt_toolkit
+meetup-api
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;prompt_toolkit&lt;/code&gt; makes it easy for building awesome command line apps&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;meetup-api&lt;/code&gt; provides us with the data for the meetup&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;asciinema&lt;/code&gt; which is also in the &lt;code&gt;requirements.txt&lt;/code&gt; isn't strictly necessary and we'll talk about it last&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;execute&lt;/code&gt; function is where you would be writing your application logic.&lt;/p&gt;
+&lt;p&gt;You should not require to make changes to &lt;code&gt;main&lt;/code&gt; and &lt;code&gt;get_names&lt;/code&gt; functions. In an upcoming project nights we will dig into &lt;code&gt;get_names&lt;/code&gt; and make changes to it.&lt;/p&gt;
+&lt;p&gt;Next let's run app.py&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;   python3 app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;This should drop you to a prompt.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Type in something to that prompt.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; Hola amigo
+&amp;gt; You issued: Hola amigo
+&lt;/pre&gt;
+
+
+&lt;p&gt;Try a few more&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; Gracias
+&amp;gt; You issued:Gracias
+&lt;/pre&gt;
+
+
+&lt;p&gt;You can now press the up arrow key and access the history of the commands you have issued. To exit out of the program, you can type Ctrl-D.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;GoodBye!&lt;/p&gt;
+&lt;h4&gt;Feature 1: Implement the Add command&lt;/h4&gt;
+&lt;p&gt;Next let's create a command where the user of the program can register new participants to build up the list of users from whom teams will be formed.&lt;/p&gt;
+&lt;p&gt;The command should look like the following&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;add &amp;lt;name&amp;gt; &amp;lt;number of lines&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;where &lt;name&gt; is the full name of the person as it appears in the
+meetup.com and &lt;lines&gt; is the  number of lines of code
+that person has written in Python or a similar programming language in their life.&lt;/lines&gt;&lt;/name&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;add Tathagata Dasgupta 1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Feature 2: Add some error checking (optional)&lt;/h4&gt;
+&lt;p&gt;You might be asking what if the user incorrectly types something that is not a number
+for the &lt;code&gt;number of lines&lt;/code&gt;. Indeed that would be incorrect. Show an error message
+if &lt;number of lines&gt; is not a number.&lt;/number&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    &amp;gt; add Tathagata Dasgupta o
+    ERROR: number of lines should be, er, a "number"
+&lt;/pre&gt;
+
+
+&lt;p&gt;Are there other error conditions that can arise?&lt;/p&gt;
+&lt;h3&gt;Feature 2: Implement a List command&lt;/h3&gt;
+&lt;p&gt;Next add a new command list.
+Show the number of people added and prints the total count
+and the median of the line count.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    &amp;gt; add Tathagata Dasgupta 1
+    &amp;gt; add Jason Wirth 2
+    &amp;gt; add Adam Bain 3
+    &amp;gt; add Brian Ray 4
+    &amp;gt; add Guido van Rossum 5
+    &amp;gt; list
+    &amp;gt; People added so far:
+    Tathagata Dasgupta, 1
+    Jason Wirth, 2
+    Adam Bain, 3
+    Brian Ray, 4
+    Guido Van Rossum, 5
+
+    Number of people: 5
+    Median line count: 3
+&lt;/pre&gt;
+
+
+&lt;p&gt;Your output need not be exactly the same, but should show the
+correct data. The Median line count will be used in the next
+features.
+Hint: Python3 has the statistics module, so you can use&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;statistics&lt;/span&gt;
+&lt;span class="n"&gt;statistics&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Feature 3: Add the teams command (optional)&lt;/h3&gt;
+&lt;p&gt;The next command we will implement is &lt;code&gt;teams&lt;/code&gt; command. Let's say you
+have added a few people already and know what the median line count
+is for the people you have added so far. On issuing the &lt;code&gt;teams&lt;/code&gt; command
+it should output teams of four such that each team contains
+  - 2 person who have written less than the median lines of code
+  - 2 person who has written more than written more than median&lt;/p&gt;
+&lt;p&gt;If there are less the four people left to group, then group them
+together.&lt;/p&gt;
+&lt;p&gt;With our running example, there would be a team of four, and the
+remaining 1 should be in another group.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    &amp;gt; teams
+    Group 1: Tathagata Dasgupta, Jason Wirth, Brian Ray, Guido Van Rossum
+    Group 2: Adam Bain
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Feature 4. Enhance Team command (optional)&lt;/h3&gt;
+&lt;p&gt;Add a unique team name&lt;/p&gt;
+&lt;h3&gt;Feature 5. Enhance Team command (optional)&lt;/h3&gt;
+&lt;p&gt;Make up random room names and add a room name for each team.&lt;/p&gt;
+&lt;h3&gt;Feature 6. Enhance Teams command (optional)&lt;/h3&gt;
+&lt;p&gt;Print the teams sorted with the average number of lines of code for each team.&lt;/p&gt;
+&lt;h3&gt;Feature 7. Auto-completion for commands (optional)&lt;/h3&gt;
+&lt;p&gt;Adding auto completion is easy with &lt;code&gt;prompt_toolkit&lt;/code&gt;. In &lt;code&gt;app.py&lt;/code&gt; the following line is used to include the
+&lt;code&gt;add&lt;/code&gt; command to auto-completion.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    command_completer = WordCompleter(['add'], ignore_case=True)
+&lt;/pre&gt;
+
+
+&lt;p&gt;Add the remaining commands.&lt;/p&gt;
+&lt;h3&gt;Feature 8. Auto-completion for participant names (optional)&lt;/h3&gt;
+&lt;p&gt;Typing in names of the attendees of project night would be time consuming
+and error prone. Let's add auto-completion magic to it!&lt;/p&gt;
+&lt;p&gt;The funcion &lt;code&gt;get_names&lt;/code&gt; uses meetup-api and returns a list of names for the attendees.
+All you need to do is include a call to &lt;code&gt;get_names&lt;/code&gt; in the command_completer.&lt;/p&gt;
+&lt;h3&gt;Feature 9. Tell the world (optional, OS X or Linux only)&lt;/h3&gt;
+&lt;p&gt;We have also installed asciinema - a tool that allows you
+to create recordings of your terminal sessions. In order to tell
+the world what your team has made, let's make a small recording.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt; ascriinmea rec teamname.json
+&lt;/pre&gt;
+
+
+&lt;p&gt;Run your program and show off all the cool features you have built in your app.
+To finish recording hit Ctrl-D.
+Next play the recordings&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt; asciinema play teamname.json
+&lt;/pre&gt;
+
+
+&lt;p&gt;Once the playback looks good, upload it to the interwebs.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt; asciinema upload teamname.json
+&lt;/pre&gt;
+
+
+&lt;p&gt;Finally, tweet the link to @chicagopython with "Python Project Night
+Mentorship". Include the twitter handles of your team members.&lt;/p&gt;
+&lt;p&gt;Note: This is tested only in OS X. Let me know your experience for running it on
+other operating systems.
+If you see an error&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    asciinema needs a UTF-8 native locale to run. Check the output of `locale` command.
+&lt;/pre&gt;
+
+
+&lt;p&gt;the run the following command before running asciinema.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    export LC_ALL=en_US.UTF-8
+&lt;/pre&gt;
+
+
+&lt;p&gt;Thanks! Thats all folks!
+If you found a bug or think you some instructions are missing - just open a issue in this repository.&lt;/p&gt;&lt;/div&gt;</description><category>cli</category><category>python-101</category><guid>https://chicagopython.github.io/posts/command-line-app-for-grouping-project-night-challengers/</guid><pubDate>Sun, 17 Mar 2019 04:59:16 GMT</pubDate></item><item><title>Python Koans</title><link>https://chicagopython.github.io/posts/python-koans/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;p&gt;For this exercise we will learn the Zen of Python using Test Driven Development.
 Python Koans is a suite of broken tests, which are written against Python code that demonstrate how to Pythonic code.
 Your job is to fix the broken tests by filling in the missing parts of the code.&lt;/p&gt;
 &lt;ul&gt;

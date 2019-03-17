@@ -15,11 +15,11 @@
  </url>
  <url>
   <loc>https://chicagopython.github.io/archive.html</loc>
-  <lastmod>2019-03-17T05:04:00Z</lastmod>
+  <lastmod>2019-03-17T07:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://chicagopython.github.io/categories/</loc>
-  <lastmod>2019-03-17T05:04:00Z</lastmod>
+  <lastmod>2019-03-17T06:13:00Z</lastmod>
  </url>
  <url>
   <loc>https://chicagopython.github.io/categories/cat_python-101/</loc>
@@ -30,6 +30,38 @@
   <lastmod>2019-03-17T05:04:00Z</lastmod>
  </url>
  <url>
+  <loc>https://chicagopython.github.io/categories/cat_web-dev/</loc>
+  <lastmod>2019-03-17T05:31:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/cicd/</loc>
+  <lastmod>2019-03-17T06:13:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/cli/</loc>
+  <lastmod>2019-03-17T05:49:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/django/</loc>
+  <lastmod>2019-03-17T06:13:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/flask/</loc>
+  <lastmod>2019-03-17T05:25:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/pytest/</loc>
+  <lastmod>2019-03-17T06:13:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/python-101/</loc>
+  <lastmod>2019-03-17T05:49:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/python/</loc>
+  <lastmod>2019-03-17T05:25:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://chicagopython.github.io/categories/test-post/</loc>
   <lastmod>2019-03-17T05:04:00Z</lastmod>
  </url>
@@ -38,8 +70,36 @@
   <lastmod>2019-03-17T04:44:00Z</lastmod>
  </url>
  <url>
+  <loc>https://chicagopython.github.io/categories/web-dev/</loc>
+  <lastmod>2019-03-17T05:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/categories/webdev/</loc>
+  <lastmod>2019-03-17T05:25:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://chicagopython.github.io/posts/</loc>
-  <lastmod>2019-03-17T05:04:00Z</lastmod>
+  <lastmod>2019-03-17T06:13:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/posts/command-line-app-for-grouping-project-night-challengers/</loc>
+  <lastmod>2019-03-17T05:49:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/posts/django-project-night-tracker/</loc>
+  <lastmod>2019-03-17T06:13:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/posts/flask-app-for-group-project-night-challengers/</loc>
+  <lastmod>2019-03-17T05:16:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/posts/flask-app-to-group-project-night-challengers/</loc>
+  <lastmod>2019-03-17T05:25:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/posts/flask-collage-for-project-night-challengers/</loc>
+  <lastmod>2019-03-17T05:25:00Z</lastmod>
  </url>
  <url>
   <loc>https://chicagopython.github.io/posts/python-koans/</loc>
@@ -48,5 +108,9 @@
  <url>
   <loc>https://chicagopython.github.io/posts/t-test/</loc>
   <lastmod>2019-03-17T05:04:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://chicagopython.github.io/posts/unit-testing-and-continuous-integration-with-pytest-travis/</loc>
+  <lastmod>2019-03-17T06:13:00Z</lastmod>
  </url>
 </urlset>

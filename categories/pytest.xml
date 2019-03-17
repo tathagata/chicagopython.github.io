@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ChiPy Coding Workshops (Posts about testing)</title><link>https://chicagopython.github.io/</link><description></description><atom:link href="https://chicagopython.github.io/categories/testing.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:chicago-sig-organizers@python.org"&gt;Chicago Python User Group&lt;/a&gt; 
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ChiPy Coding Workshops (Posts about pytest)</title><link>https://chicagopython.github.io/</link><description></description><atom:link href="https://chicagopython.github.io/categories/pytest.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:chicago-sig-organizers@python.org"&gt;Chicago Python User Group&lt;/a&gt; 
 &lt;a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html"&gt;
 &lt;img alt="Gnu Public License version 3.0"
 style="border-width:0;"
@@ -244,41 +244,4 @@ Once your implementation is complete, run &lt;code&gt;make test&lt;/code&gt;.&lt
 &lt;ul&gt;
 &lt;li&gt;test_adding_person_with_negative_lines_of_code_throws_exception&lt;/li&gt;
 &lt;li&gt;test_handle_duplicate_additions&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><category>ci/cd</category><category>pytest</category><category>testing</category><guid>https://chicagopython.github.io/posts/unit-testing-and-continuous-integration-with-pytest-travis/</guid><pubDate>Sun, 17 Mar 2019 06:08:40 GMT</pubDate></item><item><title>Python Koans</title><link>https://chicagopython.github.io/posts/python-koans/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;p&gt;For this exercise we will learn the Zen of Python using Test Driven Development.
-Python Koans is a suite of broken tests, which are written against Python code that demonstrate how to Pythonic code.
-Your job is to fix the broken tests by filling in the missing parts of the code.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Download the zip of python_koans from &lt;a href="https://github.com/tathagata/python_koans/archive/chipy_mentorship_coding_dojo.zip"&gt;here&lt;/a&gt;. This is a fork of the original repository without some of the simpler examples.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Unzip the archive. Change into the directory created and then depending on which version of Python you
-would be using, change into python2 or python3 directory.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run &lt;code&gt;./run.sh&lt;/code&gt; or &lt;code&gt;./run.bat&lt;/code&gt; depending on if you are in a unix or windows environment.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;You'll see an output like&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Thinking AboutLists
-  test_creating_lists has damaged your karma.&lt;/p&gt;
-&lt;p&gt;You have not yet reached enlightenment ...
-  AssertionError: '-=&amp;gt; FILL ME IN! &amp;lt;=-' != 0&lt;/p&gt;
-&lt;p&gt;Please meditate on the following code:
- File "/Users/t/Downloads/python_koans-chipy_mentorship_coding_dojo_2/python3/koans/about_lists.py", line 14, in test_creating_lists
-    self.assertEqual(__, len(empty_list))&lt;/p&gt;
-&lt;p&gt;You have completed 0 koans and 1 lessons.
-You are now 206 koans and 36 lessons away from reaching enlightenment.&lt;/p&gt;
-&lt;p&gt;Beautiful is better than ugly.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Open the file that follows "Please meditate on the following code" in your text editor and put the appropriate fix.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run &lt;code&gt;./run.sh&lt;/code&gt; or &lt;code&gt;./run.bat&lt;/code&gt; depending on if you are in a unix or windows environment. If your fix is correct, you'll see the error message has been replaced with a new one. Great! you have fixed one test, so now move on to the next one by repeating the above steps.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><category>testing</category><guid>https://chicagopython.github.io/posts/python-koans/</guid><pubDate>Sat, 22 Jul 2017 11:00:00 GMT</pubDate></item></channel></rss>
+&lt;/ul&gt;&lt;/div&gt;</description><category>ci/cd</category><category>pytest</category><category>testing</category><guid>https://chicagopython.github.io/posts/unit-testing-and-continuous-integration-with-pytest-travis/</guid><pubDate>Sun, 17 Mar 2019 06:08:40 GMT</pubDate></item></channel></rss>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html prefix="            og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Flask App for Project Night Challengers | ChiPy Coding Workshops</title>
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#18354c">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://chicagopython.github.io/posts/flask-app-to-group-project-night-challengers/">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<link rel="manifest" href="../../site.webmanifest">
+<link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#1f91c2">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="theme-color" content="#cceeff">
+<!-- favicons generated using http://realfavicongenerator.net/ --><!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<meta name="author" content="Chicago Python User Group">
+<link rel="prev" href="../command-line-app-for-grouping-project-night-challengers/" title="Command line App for Grouping Project Night Challengers" type="text/html">
+<link rel="next" href="../flask-collage-for-project-night-challengers/" title="Flask Collage for Project Night Challengers" type="text/html">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+         
+    <header id="header" class="hidden-print"><nav id="menu"><a href="https://chicagopython.github.io/" title="ChiPy Coding Workshops" rel="home">
+        <img src="../../assets/img/chipy-chipmunk.png" alt="ChiPy Coding Workshops" id="logo" aria-hidden>
+          ChiPy Coding Workshops
+    </a>
+
+    <ul>
+<li><a href="../../categories/">Categories</a></li>
+                <li><a href="../../about/">About</a></li>
+    
+    
+    </ul></nav></header><main id="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><div class="metadata">
+          
+
+        </div>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Flask App for Project Night Challengers</a></h1>
+
+        <time datetime="2019-03-17T00:12:37-05:00" itemprop="datePublished">March 17, 2019</time><a href="../../categories/cat_web-dev">web-dev</a>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h2>Flask App for Project Night Challengers</h2>
+<p>In this project we will be building a fully functional web app using Flask.</p>
+<p>In the <a href="https://github.com/chicagopython/CodingWorkshops/tree/master/problems/py101/python_team_project">team project command line application</a>, we built an awesome command line
+application for creating teams out of people who have RSVP-ed for a Python Project
+Night. However, it is much easier to give a link of your app to someone
+than asking them to use a command line. So, we will create a web app, that allows
+forming teams from the list of RSVP-s from meetup.com. We
+will ask for the number of lines of code that a person has written in
+Python or an equivalent language and use it for putting them in a team. The number of lines is just a rough estimate. As a reference, the linux kernel is over 23 million lines of code!</p>
+<p>In short, imagine this as a tool that one of the
+organizers uses to checkin attendees as they start coming in on the day of
+Project Night.</p>
+<p>Short url for this page: <strong>https://git.io/vdQj6</strong></p>
+<h4>Is this project for you</h4>
+<p>Before you progress further, let's check if we are ready to solve this. You should</p>
+<ul>
+<li>Have a personal computer with working wifi and power cord</li>
+<li>Have Python 3 installed on your computer. Yep, Python 3 only.</li>
+<li>Have <a href="https://atom.io/">Atom</a> or <a href="https://www.sublimetext.com/3">Sublime Text</a> installed in your computer.</li>
+<li>Have written &amp; ran programs in Python from the command line</li>
+<li>Have some idea about lists, dictionaries and functions</li>
+<li>Have created a virtual environment and installing packages with <code>pip</code>
+</li>
+<li>You have read the <a href="http://flask.pocoo.org/docs/0.12/quickstart/">flask quick introduction</a>
+</li>
+</ul>
+<h4>What is not supported</h4>
+<p>This project is not tested using Jupyter Notebook, PyCharm,
+Spider, or any other ide/text editor/programming environment for that matter.
+Atom or Sublime Text and the command line are the only supported development
+environment for this project.</p>
+<p>Sounds good? Then let's dive into building a fully functional web app using flask.</p>
+<h4>Minimum Viable Product</h4>
+<p>Our objective is to build an web based interface using Flask that</p>
+<ul>
+<li>Shows a list of people who have RSVP-ed for the project Night</li>
+<li>Each entry in the list should have</li>
+<li>The name of the person</li>
+<li>The meetup.com profile image of the person</li>
+<li>An input text box that allows entering lines of code</li>
+<li>On hitting the submit button we should get teams of four</li>
+</ul>
+<h4>Flask</h4>
+<p>For building the web interface, we will be using Flask.
+Flask is a micro web framework - it takes care of handling of the HTTP
+protocol for you and allows you focus on your application. It is flexible,
+lightweight yet powerful.</p>
+<h4>Setup your environment</h4>
+<h5>Get the source code</h5>
+<ul>
+<li>
+<p>If you are familiar with <code>git</code>, run</p>
+<pre class="code literal-block"><span></span>git clone https://github.com/chicagopython/CodingWorkshops.git
+</pre>
+
+
+</li>
+<li>
+<p>If not, go to https://github.com/chicagopython/CodingWorkshops</p>
+</li>
+<li>Click on the Download Zip and unzip the file that gets downloaded</li>
+<li>From your command line, change directory to the path where you have downloaded it.</li>
+<li>
+<p>On linux or OS X</p>
+<pre class="code literal-block"><span></span>&gt; cd path/to/CodingWorkshops/problems/webdev/flask_team_project/
+</pre>
+
+
+</li>
+<li>
+<p>On Windows</p>
+<pre class="code literal-block"><span></span>&gt; cd path\to\CodingWorkshops\problems\webdev\flask_team_project
+</pre>
+
+
+</li>
+</ul>
+<p>Here you will find the basic skeleton of the app under <code>app.py</code>.</p>
+<h4>Set up virtualenv</h4>
+<p>If you are using Linux or OS X, run the following to create a new virtualenv</p>
+<pre class="code literal-block"><span></span>python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+export FLASK_APP=app.py
+</pre>
+
+
+<p>On Windows, run the following</p>
+<pre class="code literal-block"><span></span>python3 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+set %FLASK_APP%=app.py
+</pre>
+
+
+<p><a href="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj"><img alt="asciicast" src="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj.png"></a></p>
+<h4>Feature 0: run app.py</h4>
+<p>With your environment now set up run</p>
+<pre class="code literal-block"><span></span>flask run
+</pre>
+
+
+<p>And you'll see 🔥.</p>
+<p>The reason is there is a string in the <code>app.py</code> file that allows meetup.com to identify who is trying to get data from them. It is called the API key. The one currently in the code is one of my old ones. You need to get one for your team from <a href="https://secure.meetup.com/meetup_api/key/">here</a> - obviously, you'll have to be logged into meetup.com to get the key.
+Plug in your key whereever most relevant in <code>app.py</code> and run the above command again.</p>
+<p>This will start a <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server">web server</a> on port 5000.
+Next load up http://locahost:5000/rsvps in your web browser. </p>
+<p>This will show you the list of people who RSVPed for a previous meetup.
+Goto tonight's meetup page and get the meetup id from the url.</p>
+<p>https://www.meetup.com/<em>ChiPy</em>/events/244121900/</p>
+<p>The last section of the url is the <code>event_id</code>.</p>
+<h4>Feature 1: Read app.py</h4>
+<p><code>app.py</code> is the script is where the magic happens.</p>
+<p>Lets start at the routes:</p>
+<pre class="code literal-block"><span></span>@app.route('/rsvps')
+def rsvps():
+
+
+@app.route('/teams', methods=['GET', 'POST'])
+def teams():
+</pre>
+
+
+<p>Discuss among the team how render_template function is used in rsvps and teams
+function.</p>
+<p>Two useful tools are pretty print and <code>pdb</code></p>
+<h5>Pretty print</h5>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span> <span class="k">as</span> <span class="n">pp</span>
+<span class="o">&gt;&gt;</span> <span class="n">pp</span><span class="p">(</span><span class="n">member_rsvps</span><span class="p">)</span>
+</pre>
+
+
+<p>This will give you a better view of what the function <code>get_names()</code> returns.</p>
+<h5>pdb</h5>
+<p>Python comes with a debugger <code>pdb</code>. Here's a <a href="https://appletree.or.kr/quick_reference_cards/Python/Python%20Debugger%20Cheatsheet.pdf">cheat sheet</a></p>
+<p>You can stick the following line anywhere in the code and make it halt so that you can better inspect the data and flow.</p>
+<pre class="code literal-block"><span></span><span class="kn">import</span> <span class="nn">pdb</span><span class="p">;</span> <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+</pre>
+
+
+<h4>Feature 2: Show profile images in rsvps</h4>
+<p>Make changes to rsvps.html (inside templates) to show images of next to the
+names of the people.</p>
+<h4>Feature 3: Add a text box next for lines of code</h4>
+<p>Add an input type textbox that will take a number as input</p>
+<h4>Feature 4: Display the lines of code</h4>
+<p>On hitting submit, the numbers you entered against each person should show up
+on the <code>/teams</code> page.</p>
+<h4>Feature 5: Display teams</h4>
+<p>As of now, everybody is listed under one team: Team 1.
+Split the list of people selected into teams of 4</p>
+<p>Your display of each team should include</p>
+<pre class="code literal-block"><span></span>Team Number: XYZ
+Name of team member1, Lines of code, (pic)
+Name of team member2, Lines of code, (pic)
+Name of team member3, Lines of code, (pic)
+Name of team member4, Lines of code, (pic)
+(Total lines of code:)
+</pre>
+
+
+<p>where things in () are optional.
+There is no specific criteria for creating the teams as of now. We handle that
+next.</p>
+<h4>Feature 6: Tell the world</h4>
+<p>Record a gif of your app in motion and tweet tweet the link to @chicagopython with "Python Project Night Mentorship". Include the twitter handles of your team members.</p>
+<h4>Feature 7: Integrate team creating logic (optional)</h4>
+<p>Code reuse is a hallmark well written code base. Of course, we are
+not talking about copy pasting the code, but using the abstractions that a
+programming language provides so that there is minimum duplication of code.</p>
+<p>Use the code that you wrote in the team project command line application. The logic
+that you have implemented earlier for grouping your list of people into teams
+should now be used for creating your teams.</p>
+<p>Thanks! Thats all folks!
+If you found a bug or think you some instructions are missing - just open a issue in this repository.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><div>
+    <span class="hidden-print">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span>
+    <span class="hidden-print">
+      <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-url="https://chicagopython.github.io/posts/flask-app-to-group-project-night-challengers/"></script></span>
+    </div>
+    <nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/cat_web-dev/" rel="category"> web-dev</a></li>
+            <li><a class="tag p-category" href="../../categories/flask/" rel="tag">flask</a></li>
+            <li><a class="tag p-category" href="../../categories/web-dev/" rel="tag">web-dev</a></li>
+      </ul>
+<ul class="pager hidden-print">
+<li>
+            <a href="../command-line-app-for-grouping-project-night-challengers/" rel="prev" class="previous" title="Command line App for Grouping Project Night Challengers"><span aria-hidden="true">‹ </span>Older</a>
+        </li>
+        <li>
+            <a href="../flask-collage-for-project-night-challengers/" rel="next" class="next" title="Flask Collage for Project Night Challengers">Newer<span aria-hidden="true"> ›</span></a>
+        </li>
+    </ul></nav></aside></article></main><footer id="footer"><p class="light-sans">© Chicago Python User Group · Subscribe via <a href="../../rss.xml">RSS</a> · Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a> · 
+<a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html">
+<img alt="Gnu Public License version 3.0" style="border-width:0;" src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png"></a></p>
+            
+        </footer>
+</body>
+</html>

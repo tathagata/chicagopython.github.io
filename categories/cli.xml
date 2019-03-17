@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ChiPy Coding Workshops (Posts about cli)</title><link>https://chicagopython.github.io/</link><description></description><atom:link href="https://chicagopython.github.io/categories/cli.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:chicago-sig-organizers@python.org"&gt;Chicago Python User Group&lt;/a&gt; 
+&lt;a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html"&gt;
+&lt;img alt="Gnu Public License version 3.0"
+style="border-width:0;"
+src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png"&gt;&lt;/a&gt;</copyright><lastBuildDate>Sun, 17 Mar 2019 05:49:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Command line App for Grouping Project Night Challengers</title><link>https://chicagopython.github.io/posts/command-line-app-for-grouping-project-night-challengers/</link><dc:creator>Chicago Python User Group</dc:creator><description>&lt;div&gt;&lt;h2&gt;Command line App for Grouping Project Night Challengers&lt;/h2&gt;
+&lt;p&gt;The organizers of Project Nights need your help! Grouping people for
+team projects is a manual task. Why do it manually, when
+we can automate it?&lt;/p&gt;
+&lt;h3&gt;Is this project for you&lt;/h3&gt;
+&lt;p&gt;Before you progress further, let's check if we are ready to solve this. You should&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have a personal computer with working wifi and power chord&lt;/li&gt;
+&lt;li&gt;Have Python 3 installed on your computer. Yep, Python 3 only.&lt;/li&gt;
+&lt;li&gt;Have &lt;a href="https://atom.io/"&gt;Atom&lt;/a&gt; or &lt;a href="https://www.sublimetext.com/3"&gt;Sublime Text&lt;/a&gt; installed in your computer.&lt;/li&gt;
+&lt;li&gt;Have written &amp;amp; ran programs in Python from the command line&lt;/li&gt;
+&lt;li&gt;Have some idea about lists, dictionaries and functions&lt;/li&gt;
+&lt;li&gt;Have some idea about &lt;code&gt;virtualenv&lt;/code&gt; and installing packages with &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This project is not tested using Jupyter Notebook, PyCharm,
+Spider, or any other ide/text editor/programming environment for that matter.
+Atom or Sublime Text and the command line are the only supported development environment for this project.&lt;/p&gt;
+&lt;p&gt;Short url for this page: &lt;strong&gt;https://git.io/vdv43&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sounds reasonable? Then let's dive in - and build an awesome command line app using python.&lt;/p&gt;
+&lt;h3&gt;Can command line applications be cool&lt;/h3&gt;
+&lt;p&gt;You bet!
+Checkout this PyCon 2017 video on which this project is based&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=hJhZhLg3obk" target="_blank"&gt;&lt;img src="http://img.youtube.com/vi/hJhZhLg3obk/0.jpg" alt="Amjith Ramanujam Awesome Command Line Tools PyCon 2017" width="560" height="315" border="10"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The slides are available &lt;a href="https://speakerdeck.com/pycon2017/amjith-ramanujam-awesome-command-line-tools"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;What is a Team Project&lt;/h4&gt;
+&lt;p&gt;Glad you asked! A team project is an hour long problem solving session where each team
+consists of four members of different expertise level. The teams are formed from the
+list of attendees of the project night.&lt;/p&gt;
+&lt;h4&gt;The Objective&lt;/h4&gt;
+&lt;p&gt;Our objective is to build an awesome command line application in Python3 that
+- allows creating list of people who want to participate in a team project
+- once the list is created, the program automatically creates teams of four&lt;/p&gt;
+&lt;h4&gt;A Balanced Team&lt;/h4&gt;
+&lt;p&gt;To keep the team composition balanced in terms of experience, we want every team
+to have two members with more experience than the other two.
+Measuring experience is very subjective and difficult, but we will keep it simple.
+We will rely on a (not very scientific) metic - lines of code written till date.&lt;/p&gt;
+&lt;p&gt;We will create a list by taking names of people from tonight's RSVP list. Along with their name we will also include the number of lines of code that person has written till date in Python or an equivalent language. Imagine this as a tool that one of the organizers uses to checkin attendees as they start coming in on the day of Project Night.&lt;/p&gt;
+&lt;p&gt;And yeah, this number of lines can be just a rough estimate. As a
+reference, the linux kernel is over 23 million lines of code!&lt;/p&gt;
+&lt;h4&gt;Bootstrap&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If you are familiar with &lt;code&gt;git&lt;/code&gt;, run&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/chicagopython/CodingWorkshops.git
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If not, go to https://github.com/chicagopython/CodingWorkshops&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Click on the Download Zip and unzip the file that gets downloaded&lt;/li&gt;
+&lt;li&gt;From your command line, change directory to the path where you have downloaded it.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On linux or OS X&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cd path/to/CodingWorkshops/problems/py101/python_team_project/
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On Windows&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cd path\to\CodingWorkshops\problems\py101\python_team_project
+&lt;/pre&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here you will find the basic skeleton of the app under &lt;code&gt;app.py&lt;/code&gt;. (after September 21, 2017)&lt;/p&gt;
+&lt;h4&gt;Set up virtualenv&lt;/h4&gt;
+&lt;p&gt;If you are using Linux or OS X, run the following to create a new virtualenv&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;On Windows, run the following&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python3 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;&lt;a href="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj"&gt;&lt;img alt="asciicast" src="https://asciinema.org/a/M1hP91h153PuOPEjVYbot6jPj.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Next let's get started by looking into the code.&lt;/p&gt;
+&lt;h3&gt;Feature 0: Look into app.py&lt;/h3&gt;
+&lt;p&gt;app.py is the script contains some code to get you started.
+We will be using two external libraries for this
+program.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;python_prompt_toolkit
+meetup-api
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;prompt_toolkit&lt;/code&gt; makes it easy for building awesome command line apps&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;meetup-api&lt;/code&gt; provides us with the data for the meetup&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;asciinema&lt;/code&gt; which is also in the &lt;code&gt;requirements.txt&lt;/code&gt; isn't strictly necessary and we'll talk about it last&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;execute&lt;/code&gt; function is where you would be writing your application logic.&lt;/p&gt;
+&lt;p&gt;You should not require to make changes to &lt;code&gt;main&lt;/code&gt; and &lt;code&gt;get_names&lt;/code&gt; functions. In an upcoming project nights we will dig into &lt;code&gt;get_names&lt;/code&gt; and make changes to it.&lt;/p&gt;
+&lt;p&gt;Next let's run app.py&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;   python3 app.py
+&lt;/pre&gt;
+
+
+&lt;p&gt;This should drop you to a prompt.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Type in something to that prompt.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; Hola amigo
+&amp;gt; You issued: Hola amigo
+&lt;/pre&gt;
+
+
+&lt;p&gt;Try a few more&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; Gracias
+&amp;gt; You issued:Gracias
+&lt;/pre&gt;
+
+
+&lt;p&gt;You can now press the up arrow key and access the history of the commands you have issued. To exit out of the program, you can type Ctrl-D.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;GoodBye!&lt;/p&gt;
+&lt;h4&gt;Feature 1: Implement the Add command&lt;/h4&gt;
+&lt;p&gt;Next let's create a command where the user of the program can register new participants to build up the list of users from whom teams will be formed.&lt;/p&gt;
+&lt;p&gt;The command should look like the following&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;add &amp;lt;name&amp;gt; &amp;lt;number of lines&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;where &lt;name&gt; is the full name of the person as it appears in the
+meetup.com and &lt;lines&gt; is the  number of lines of code
+that person has written in Python or a similar programming language in their life.&lt;/lines&gt;&lt;/name&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;add Tathagata Dasgupta 1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Feature 2: Add some error checking (optional)&lt;/h4&gt;
+&lt;p&gt;You might be asking what if the user incorrectly types something that is not a number
+for the &lt;code&gt;number of lines&lt;/code&gt;. Indeed that would be incorrect. Show an error message
+if &lt;number of lines&gt; is not a number.&lt;/number&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    &amp;gt; add Tathagata Dasgupta o
+    ERROR: number of lines should be, er, a "number"
+&lt;/pre&gt;
+
+
+&lt;p&gt;Are there other error conditions that can arise?&lt;/p&gt;
+&lt;h3&gt;Feature 2: Implement a List command&lt;/h3&gt;
+&lt;p&gt;Next add a new command list.
+Show the number of people added and prints the total count
+and the median of the line count.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    &amp;gt; add Tathagata Dasgupta 1
+    &amp;gt; add Jason Wirth 2
+    &amp;gt; add Adam Bain 3
+    &amp;gt; add Brian Ray 4
+    &amp;gt; add Guido van Rossum 5
+    &amp;gt; list
+    &amp;gt; People added so far:
+    Tathagata Dasgupta, 1
+    Jason Wirth, 2
+    Adam Bain, 3
+    Brian Ray, 4
+    Guido Van Rossum, 5
+
+    Number of people: 5
+    Median line count: 3
+&lt;/pre&gt;
+
+
+&lt;p&gt;Your output need not be exactly the same, but should show the
+correct data. The Median line count will be used in the next
+features.
+Hint: Python3 has the statistics module, so you can use&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;statistics&lt;/span&gt;
+&lt;span class="n"&gt;statistics&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Feature 3: Add the teams command (optional)&lt;/h3&gt;
+&lt;p&gt;The next command we will implement is &lt;code&gt;teams&lt;/code&gt; command. Let's say you
+have added a few people already and know what the median line count
+is for the people you have added so far. On issuing the &lt;code&gt;teams&lt;/code&gt; command
+it should output teams of four such that each team contains
+  - 2 person who have written less than the median lines of code
+  - 2 person who has written more than written more than median&lt;/p&gt;
+&lt;p&gt;If there are less the four people left to group, then group them
+together.&lt;/p&gt;
+&lt;p&gt;With our running example, there would be a team of four, and the
+remaining 1 should be in another group.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    &amp;gt; teams
+    Group 1: Tathagata Dasgupta, Jason Wirth, Brian Ray, Guido Van Rossum
+    Group 2: Adam Bain
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Feature 4. Enhance Team command (optional)&lt;/h3&gt;
+&lt;p&gt;Add a unique team name&lt;/p&gt;
+&lt;h3&gt;Feature 5. Enhance Team command (optional)&lt;/h3&gt;
+&lt;p&gt;Make up random room names and add a room name for each team.&lt;/p&gt;
+&lt;h3&gt;Feature 6. Enhance Teams command (optional)&lt;/h3&gt;
+&lt;p&gt;Print the teams sorted with the average number of lines of code for each team.&lt;/p&gt;
+&lt;h3&gt;Feature 7. Auto-completion for commands (optional)&lt;/h3&gt;
+&lt;p&gt;Adding auto completion is easy with &lt;code&gt;prompt_toolkit&lt;/code&gt;. In &lt;code&gt;app.py&lt;/code&gt; the following line is used to include the
+&lt;code&gt;add&lt;/code&gt; command to auto-completion.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    command_completer = WordCompleter(['add'], ignore_case=True)
+&lt;/pre&gt;
+
+
+&lt;p&gt;Add the remaining commands.&lt;/p&gt;
+&lt;h3&gt;Feature 8. Auto-completion for participant names (optional)&lt;/h3&gt;
+&lt;p&gt;Typing in names of the attendees of project night would be time consuming
+and error prone. Let's add auto-completion magic to it!&lt;/p&gt;
+&lt;p&gt;The funcion &lt;code&gt;get_names&lt;/code&gt; uses meetup-api and returns a list of names for the attendees.
+All you need to do is include a call to &lt;code&gt;get_names&lt;/code&gt; in the command_completer.&lt;/p&gt;
+&lt;h3&gt;Feature 9. Tell the world (optional, OS X or Linux only)&lt;/h3&gt;
+&lt;p&gt;We have also installed asciinema - a tool that allows you
+to create recordings of your terminal sessions. In order to tell
+the world what your team has made, let's make a small recording.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt; ascriinmea rec teamname.json
+&lt;/pre&gt;
+
+
+&lt;p&gt;Run your program and show off all the cool features you have built in your app.
+To finish recording hit Ctrl-D.
+Next play the recordings&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt; asciinema play teamname.json
+&lt;/pre&gt;
+
+
+&lt;p&gt;Once the playback looks good, upload it to the interwebs.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt; asciinema upload teamname.json
+&lt;/pre&gt;
+
+
+&lt;p&gt;Finally, tweet the link to @chicagopython with "Python Project Night
+Mentorship". Include the twitter handles of your team members.&lt;/p&gt;
+&lt;p&gt;Note: This is tested only in OS X. Let me know your experience for running it on
+other operating systems.
+If you see an error&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    asciinema needs a UTF-8 native locale to run. Check the output of `locale` command.
+&lt;/pre&gt;
+
+
+&lt;p&gt;the run the following command before running asciinema.&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;    export LC_ALL=en_US.UTF-8
+&lt;/pre&gt;
+
+
+&lt;p&gt;Thanks! Thats all folks!
+If you found a bug or think you some instructions are missing - just open a issue in this repository.&lt;/p&gt;&lt;/div&gt;</description><category>cli</category><category>python-101</category><guid>https://chicagopython.github.io/posts/command-line-app-for-grouping-project-night-challengers/</guid><pubDate>Sun, 17 Mar 2019 04:59:16 GMT</pubDate></item></channel></rss>
