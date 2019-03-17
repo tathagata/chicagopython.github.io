@@ -1,0 +1,4 @@
+Sitemap: https://chicagopython.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: chicagopython.github.io
