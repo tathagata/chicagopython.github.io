@@ -21,6 +21,8 @@ would be using, change into python2 or python3 directory.
 * Run `./run.sh` or `./run.bat` depending on if you are in a unix or windows environment.
 
 * You'll see an output like
+
+
 > Thinking AboutLists
 >   test_creating_lists has damaged your karma.
 >

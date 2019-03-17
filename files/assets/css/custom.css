@@ -128,7 +128,7 @@ nav li {
   padding: 0.25em 0.5em;
 }
 
-nav a {
+header nav a {
   color: #fff;
   vertical-align: middle;
 }
@@ -168,7 +168,7 @@ body > header a[rel="home"] {
   display: block;
   min-width: 66vw;
   font-size: large;
-  margin: 2px;
+  margin: auto;
   padding: 0.25rem;
 }
 
@@ -330,6 +330,11 @@ body > header a[rel="home"] {
 .postpromonav {
   margin: 1em auto;
   text-align: center;
+}
+
+.postpromonav div {
+  line-height: 1px;
+  margin: 5px;
 }
 
 .postpromonav ul {
