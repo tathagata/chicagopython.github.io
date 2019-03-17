@@ -249,11 +249,6 @@ body > header a[rel="home"] {
   margin-top: .1em;
 }
 
-.metadata > time + span::before {
-  content: "|";
-  padding-right: 1em;
-}
-
 .more {
   font-variant-caps: all-small-caps;
   margin-bottom: .42em;
@@ -310,14 +305,11 @@ body > header a[rel="home"] {
 .postindex ul {
   list-style-type: none;
   display: inline;
+  padding: 0;
 }
 
 .postindex li {
   display: inline;
-}
-
-.postindex .tag {
-  color: #888;
 }
 
 .postlist, .projectlist {
@@ -416,9 +408,10 @@ body > header a[rel="home"] {
 }
 
 .tags li {
-  /*background: #dde;*/
-  border-radius: 2px;
-  padding: 1px 5px;
+  background: #eee;
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin: 2px;
 }
 
 .tags li:hover {

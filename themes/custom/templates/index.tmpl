@@ -40,7 +40,7 @@
     <h3 class="p-name entry-title"><a href="${post.permalink()}" class="u-url">${post.title()|h}</a></h3>
     <span class="metadata">
         <time datetime="${post.formatted_date('webiso')}">${post.formatted_date(date_format)|h}</time>
-        <span class="fas fa-tags"></span>
+        <i class="fas fa-tags"></i>
         ${post_helper.html_tags(post)}
     </span>
     <!--
