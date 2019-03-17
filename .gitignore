@@ -7,4 +7,4 @@ output
 venv
 id_rsa
 id_rsa.pub
-.mypy_cache/*
+.mypy_cache/3.6
